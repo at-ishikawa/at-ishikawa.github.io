@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <script src='https://cdn.rawgit.com/google/closure-library/master/closure/goog/base.js'></script>
+    <script>
+      goog.require('goog.dom');
+      goog.require('goog.dom.TagName');
+
+      function sayHi() {
+        var newHeader = goog.dom.createDom(goog.dom.TagName.H1, {'style': 'background-color:#EEE'},
+                                           'Hello world!');
+        goog.dom.appendChild(document.body, newHeader);
+      }
+    </script>
+  </head>
+  <body onload="sayHi()">
+  </body>
+</html>
