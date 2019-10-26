@@ -1,0 +1,1 @@
+var module$exports$myproject$klass=function(){};module$exports$myproject$klass.prototype.sayHi=function(){return"Hello say"};var module$exports$myproject$start={},module$contents$myproject$start_klazz=new module$exports$myproject$klass;alert(module$contents$myproject$start_klazz.sayHi());
