@@ -4,6 +4,10 @@ This page collects notes for technical things.
 ## JavaScript
 - [Getting Started with Google Closure Library](./docs/javascript/google-closure-library.md)
 
+## GCP
+- [Cloud CDN](./docs/gcp/cloud_cdn.md)
+- [Cloud Endpoints](./docs/gcp/cloud_endpoints.md)
+
 # About me
 - [GitHub](https://github.com/at-ishikawa)
 - [Medium](https://medium.com/@at_ishikawa)
