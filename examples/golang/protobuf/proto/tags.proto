@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package proto;
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+option (gogoproto.populate_all) = true;
+
+message Outside {
+  Inside Inside = 1 [(gogoproto.moretags) = "validate:\"required\""];
+  string Field2 = 2 [(gogoproto.moretags) = "validate:\"min=2\""];
+  oneof filed {
+    string Field3 = 3 [(gogoproto.moretags) = "valiate:\"max=8\""];
+  }
+}
+
+message Inside {
+  string Field1 = 1 [(gogoproto.moretags) = "validate:\"max=8\""];
+}
