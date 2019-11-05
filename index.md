@@ -1,8 +1,12 @@
 This page collects notes for technical things.
 
 # Notes
+## Go
+- [gogo/protobuf: Protocol Buffers for Go with Gadgets](./docs/golang/gogoprotobuf.md)
+
 ## JavaScript
 - [Getting Started with Google Closure Library](./docs/javascript/google-closure-library.md)
+
 
 ## GCP
 - [Cloud CDN](./docs/gcp/cloud_cdn.md)
