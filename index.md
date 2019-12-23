@@ -12,6 +12,8 @@ This page collects notes for technical things.
 - [Cloud CDN](./docs/gcp/cloud_cdn.md)
 - [Cloud Endpoints](./docs/gcp/cloud_endpoints.md)
 
+## Kubernetes
+- [kubectl](./docs/kubernetes/kubectl.md)
 
 ## Terraform
 - [Overview](./docs/terraform/overview.md)
