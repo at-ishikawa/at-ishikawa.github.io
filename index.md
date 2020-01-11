@@ -1,21 +1,44 @@
 This page collects notes for technical things.
 
-# Notes
-## Go
-- [gogo/protobuf: Protocol Buffers for Go with Gadgets](./docs/golang/gogoprotobuf.md)
+Notes
+====
 
-## JavaScript
-- [Getting Started with Google Closure Library](./docs/javascript/google-closure-library.md)
+Go
+----
+- [gogo/protobuf: Protocol Buffers for Go with Gadgets](./docs/golang/gogoprotobuf)
+
+JavaScript
+----
+- [Getting Started with Google Closure Library](./docs/javascript/google-closure-library)
 
 
-## GCP
-- [Cloud CDN](./docs/gcp/cloud_cdn.md)
-- [Cloud Endpoints](./docs/gcp/cloud_endpoints.md)
+GCP
+----
+- [Cloud CDN](./docs/gcp/cloud_cdn)
+- [Cloud Endpoints](./docs/gcp/cloud_endpoints)
 
 
-## Terraform
-- [Overview](./docs/terraform/overview.md)
-- [GCP](./docs/terraform/gcp.md)
+Nginx
+---
+- [Server configuration](./docs/nginx/server_config)
+
+MySQL
+----
+- [Server configuration](./docs/mysql/server_config)
+- [Tools](./docs/mysql/tools)
+
+SSH
+----
+- [Client](./docs/ssh/client)
+
+
+Terraform
+----
+- [Overview](./docs/terraform/overview)
+- [GCP](./docs/terraform/gcp)
+
+
+
 
 # About me
 - [GitHub](https://github.com/at-ishikawa)
