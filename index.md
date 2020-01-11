@@ -44,7 +44,12 @@ Terraform
 - [GCP](./docs/terraform/gcp)
 
 
-# About me
+Git
+----
+- [GitHub Pages](./docs/git/github_pages)
+
+About me
+====
 - [GitHub](https://github.com/at-ishikawa)
 - [Medium](https://medium.com/@at_ishikawa)
 - [Twitter](https://twitter.com/at_ishikawa)
