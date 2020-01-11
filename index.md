@@ -18,6 +18,10 @@ GCP
 - [Cloud Endpoints](./docs/gcp/cloud_endpoints)
 
 
+Nginx
+---
+- [Server configuration](./docs/nginx/server_config)
+
 MySQL
 ----
 - [Server configuration](./docs/mysql/server_config)
