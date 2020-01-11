@@ -17,6 +17,9 @@ This page collects notes for technical things.
 - [Overview](./docs/terraform/overview.md)
 - [GCP](./docs/terraform/gcp.md)
 
+## SSH
+- [Client](./docs/ssh/client.md)
+
 # About me
 - [GitHub](https://github.com/at-ishikawa)
 - [Medium](https://medium.com/@at_ishikawa)
