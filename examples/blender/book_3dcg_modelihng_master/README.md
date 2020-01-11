@@ -1,0 +1,1 @@
+These models were made on May 2017, probably from [this book](https://www.amazon.co.jp/Blender-3DCG-%E3%83%A2%E3%83%87%E3%83%AA%E3%83%B3%E3%82%B0%E3%83%BB%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC-Benjamin/dp/4800711479/ref=sr_1_1).
