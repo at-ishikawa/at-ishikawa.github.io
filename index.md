@@ -18,6 +18,12 @@ GCP
 - [Cloud Endpoints](./docs/gcp/cloud_endpoints)
 
 
+Kubernetes
+---
+- [kubectl](./docs/kubernetes/kubectl)
+- [helm](./docs/kubernetes/helm/client)
+
+
 Nginx
 ---
 - [Server configuration](./docs/nginx/server_config)
@@ -36,10 +42,6 @@ Terraform
 ----
 - [Overview](./docs/terraform/overview)
 - [GCP](./docs/terraform/gcp)
-
-
-## Kubernetes
-- [kubectl](./docs/kubernetes/kubectl.md)
 
 
 # About me
