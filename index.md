@@ -5,6 +5,7 @@ Notes
 
 Go
 ----
+- [grpc: gRPC](./docs/golang/grpc)
 - [gogo/protobuf: Protocol Buffers for Go with Gadgets](./docs/golang/gogoprotobuf)
 
 JavaScript
