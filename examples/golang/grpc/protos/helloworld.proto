@@ -4,6 +4,7 @@ package protos;
 
 service HelloWorld {
   rpc SayHello (HelloRequest) returns (HelloResponse) {}
+  rpc KeepReplyingHello (HelloRequest) returns (stream HelloResponse) {}
 }
 
 message HelloRequest {
