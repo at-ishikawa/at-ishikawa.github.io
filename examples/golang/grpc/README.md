@@ -1,7 +1,7 @@
 # Getting Started
 ## Install packages
 ```
-$ dep ensure
+$ go get all
 ```
 
 ## Generate files from protocol buffers
@@ -12,7 +12,7 @@ $ protoc --go_out=plugins=grpc:. protos/helloworld.proto
 ## Run a program
 ### Start a server
 ```
-$ go run server/main.go
+$ go run ./server
 ```
 
 ### gRPC client using grpc cli

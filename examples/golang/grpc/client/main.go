@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	pb "github.com/at-ishikawa/samples/grpc/helloworld/protos"
+	pb "github.com/at-ishikawa/at-ishikawa.github.io/examples/golang/grpc/protos"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 )
