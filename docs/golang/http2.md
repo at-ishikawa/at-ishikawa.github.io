@@ -22,7 +22,12 @@ When this method is used, the buffered data on the server is sent to the client.
 
 
 ## Server push
-Use `http.Pusher`. No example yet.
+Like `http.Flusher`, there is an interface [`http.Pusher`](https://golang.org/pkg/net/http/#Pusher), which is implemented by `http.ResponseWriter`, and we can use it for server push.
+A path, http method, and headers can be configured to get requests from clients.
+However, as of March 2020, `http.Client` in Go does not support server push, neither does `curl` cli.
+If clients do not support server push but servers try to do it, then [`http.ErrNotSupported`](https://golang.org/src/net/http/request.go?s=1006:1204) is made.
+
+For the details of this in Go, there is a [page](https://blog.golang.org/h2push) in an official blog.
 
 
 ## About examples in this page
