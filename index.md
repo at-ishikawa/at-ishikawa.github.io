@@ -1,13 +1,14 @@
-This page collects notes for technical things.
-
-Notes
-====
+---
+layout: home
+author_profile: true
+---
+These pages collect notes for challenges and issues that the I got about technical stuff.
 
 Go
 ----
-- [grpc: gRPC](./docs/golang/grpc)
+- [gRPC](./docs/golang/grpc)
 - [gogo/protobuf: Protocol Buffers for Go with Gadgets](./docs/golang/gogoprotobuf)
-- [http2: HTTP/2](./docs/golang/http2)
+- [HTTP/2](./docs/golang/http2)
 
 JavaScript
 ----
@@ -49,9 +50,3 @@ Terraform
 Git
 ----
 - [GitHub Pages](./docs/git/github_pages)
-
-About me
-====
-- [GitHub](https://github.com/at-ishikawa)
-- [Medium](https://medium.com/@at_ishikawa)
-- [Twitter](https://twitter.com/at_ishikawa)

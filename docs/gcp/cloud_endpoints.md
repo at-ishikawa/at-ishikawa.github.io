@@ -1,4 +1,6 @@
-# Cloud endpoints
+---
+title: Cloud endpoints
+---
 Written in Nov, 2019.
 
 The Cloud endpoint is actually the NGINX proxy which offers the following features on GCP.
@@ -7,13 +9,13 @@ The Cloud endpoint is actually the NGINX proxy which offers the following featur
 
 The overall architecture for this is described in [official page](https://cloud.google.com/endpoints/docs/openapi/architecture-overview).
 
-## Supported protocol
+# Supported protocol
 They support
 1. OpenAPI. The spec of OpenAPI is described [here](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md).
 1. gRPC
 1. Rest APIs using Cloud Endpoints Framework
 
-## Supported environments
+# Supported environments
 1. Endpoint on Cloud Run
 1. Endpoint on GKE as a sidecar
 1. Endpoint on App Engine
