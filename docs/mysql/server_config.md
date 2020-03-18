@@ -1,9 +1,12 @@
-MySQL server
-====
+---
+title: MySQL server configuration
+---
 
 Logs
-----
-### About slow queries
+===
+
+About slow queries
+---
 ```
 slow_query_log = 1
 slow_query_log_file = /var/log/mysql/slow_query.log
@@ -15,8 +18,10 @@ The field `long_query_time` is the time to output a query as a slow log. The mea
 
 
 Performance
-----
-### Recommended configuration
+===
+
+Recommended configuration
+---
 configurations should be changed based on server or application resources.
 ```
 [mysqld]
@@ -38,8 +43,10 @@ read_rnd_buffer_size=2M
 ```
 
 Cache
-----
-### Query cache
+===
+
+Query cache
+---
 ```
 [mysqld]
 # The max query size
@@ -58,8 +65,10 @@ See following pages for more details.
 
 
 Buffer
-----
-### Buffer sizes
+===
+
+Buffer sizes
+---
 ```
 [mysqld]
 # The buffer when using sort

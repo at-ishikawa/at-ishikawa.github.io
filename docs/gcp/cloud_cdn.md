@@ -1,8 +1,10 @@
-# Cloud CDN
+---
+title: Cloud CDN
+---
 Written in Nov. 2019.
 
 
-## Target upstream services
+# Target upstream services
 Cloud CDN can have only GCP load balancer as the upstream services.
 And GCP load balancer can configure one of followings for backends.
 
@@ -14,7 +16,7 @@ And GCP load balancer can configure one of followings for backends.
 See [official document](https://cloud.google.com/cdn/docs/overview) for the architecture using this.
 
 
-## Configurations
+# Configurations
 Cache can be controlled by response headers of origin servers, like cache expiration times, like `Cache-Control: max-age` header.
 The details are described in [here](https://cloud.google.com/cdn/docs/caching#expiration).
 
