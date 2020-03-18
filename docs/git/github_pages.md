@@ -1,8 +1,9 @@
-GitHub Pages
-===
+---
+title: GitHub Pages
+---
 
 Getting Started
-----
+===
 See [Official tutorial](https://help.github.com/en/github/working-with-github-pages/getting-started-with-github-pages) for detail steps.
 
 Basically, what you have to do is
@@ -11,7 +12,7 @@ Basically, what you have to do is
 
 
 Customize pages
----
+===
 Before updating your repository, please see each repository [here](https://github.com/pages-themes) for your theme to check how to customize for your purpose.
 
 The examples of customization are

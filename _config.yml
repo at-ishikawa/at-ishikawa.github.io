@@ -1,4 +1,50 @@
-theme: jekyll-theme-slate
-title: at-ishikawa's blog
-description: The blog to put notes for technical things
-google_analytics: UA-151505454-1
+remote_theme: "mmistakes/minimal-mistakes@4.19.1"
+title: at-ishikawa's pages
+description: The notes about technical things when at-ishikawa looked into them for future use or faced troubles
+plugins:
+#   - jekyll-paginate
+#   - jekyll-sitemap
+#   - jekyll-gist
+#   - jemoji
+  - jekyll-feed
+  - jekyll-include-cache
+minimal_mistakes_skin: air
+search: true
+
+include:
+  - docs
+
+author:
+  name   : "at-ishikawa"
+  bio    : "\"Learn as if you will live forever, live as if you will die tomorrow.\" anime nerd, software engineer"
+  links:
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/at_ishikawa"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/at-ishikawa"
+    - label: "Medium"
+      icon: "fas fa-fw fa-link"
+      url: "https://medium.com/@at_ishikawa"
+
+defaults:
+  # docs
+  - scope:
+      path: "docs"
+      type: pages
+    values:
+      layout: single
+      toc: true
+      toc_label: "Table of contents"
+      sidebar:
+        nav: "docs"
+      read_time: true
+      comments: true
+      share: true
+      related: true
+
+analytics:
+  provider: "google-universal"
+  google:
+    tracking_id: "UA-151505454-1"
