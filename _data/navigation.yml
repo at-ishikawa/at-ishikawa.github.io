@@ -1,0 +1,53 @@
+# main:
+#   - title: "Top"
+#     url: /
+
+docs:
+  - title: Go
+    children:
+      - title: "gRPC"
+        url: /docs/golang/grpc
+      - title: "gogo/protobuf: Protocol Buffers for Go with Gadgets"
+        url: /docs/golang/gogoprotobuf
+      - title: "HTTP/2"
+        url: /docs/golang/http2
+  - title: JavaScript
+    children:
+      - title: "Getting Started with Google Closure Library"
+        url: /docs/javascript/google-closure-library
+  - title: GCP
+    children:
+      - title: "Cloud CDN"
+        url: /docs/gcp/cloud_cdn
+      - title: "Cloud Endpoints"
+        url: /docs/gcp/cloud_endpoints
+  - title: Kubernetes
+    children:
+      - title: "kubectl"
+        url: /docs/kubernetes/kubectl
+      - title: "helm"
+        url: /docs/kubernetes/helm/client
+  - title: Nginx
+    children:
+      - title: "Server configuration"
+        url: /docs/nginx/server_config
+  - title: MySQL
+    children:
+      - title: "Server configuration"
+        url: /docs/mysql/server_config
+      - title: "Tools"
+        url: /docs/mysql/tools
+  - title: SSH
+    children:
+      - title: "Client"
+        url: /docs/ssh/client
+  - title: Terraform
+    children:
+      - title: "Overview"
+        url: /docs/terraform/overview
+      - title: "GCP"
+        url: /docs/terraform/gcp
+  - title: Git
+    children:
+      - title: "GitHub Pages"
+        url: /docs/git/github_pages
