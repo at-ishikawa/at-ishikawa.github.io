@@ -1,9 +1,13 @@
-Helm Client
-====
+---
+title: Helm Client
+---
 
-Troubleshooting
-----
-### How to downgrade helm client version using Homebrew
+Troubleshootings
+===
+
+How to downgrade helm client version using Homebrew
+---
+
 If helm versions are incompatible with servers, then helm cli can't be used.
 See [this issue](https://github.com/helm/helm/issues/4547#issuecomment-423312200) for the details of issues and solutions.
 To sum up, following commands should be ran to downgrade the version to 2.11.0

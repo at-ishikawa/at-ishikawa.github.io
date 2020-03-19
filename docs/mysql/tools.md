@@ -1,10 +1,12 @@
-MySQL tools
-====
+---
+title: MySQL tools
+---
 
-### [MySQL Tuner tool](https://github.com/major/MySQLTuner-perl)
+[MySQL Tuner tool](https://github.com/major/MySQLTuner-perl)
+---
 This is a tool to review a configuration for MySQL server.
 
-#### Getting started
+### Getting started
 To run this tool, we should run following commands.
 ```
 wget http://mysqltuner.pl/ -O mysqltuner.pl

@@ -1,9 +1,12 @@
-Nginx server configurations
-====
+---
+title: Nginx server configurations
+---
 
 Performance
-----
-### proxy_cache
+===
+
+proxy_cache
+---
 The below configuration is the example to cache images.
 ```
 proxy_cache_path /path/to/cache levels=1:2 keys_zone=my_cache:10m max_size=10g
@@ -36,7 +39,8 @@ References
 - [Server cache](https://www.nginx.com/blog/nginx-caching-guide/)
 - [Client cache](https://www.howtoforge.com/make-browsers-cache-static-files-on-nginx)
 
-### gzip compression
+gzip compression
+---
 The example of gzip compression is followings.
 ```
 http {
@@ -60,7 +64,8 @@ References
 - [gzip_static module document](http://nginx.org/en/docs/http/ngx_http_gzip_static_module.html)
 
 
-### Connections
+Connections
+---
 The example for configurations related with connections.
 ```
 events {
@@ -90,7 +95,8 @@ References
 - [gist for NGINX Tuning For Best Performance](https://gist.github.com/denji/8359866)
 
 
-### File cache
+File cache
+---
 The example for file cache.
 ```
 http {

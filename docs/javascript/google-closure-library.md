@@ -1,4 +1,6 @@
-# Google closure library
+---
+title: Google closure library
+---
 Written: October 2019.
 
 Some JavaScript library depends on Google Closure. If you need to understand the behavior of such a library, you have to know closure.
