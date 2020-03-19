@@ -9,7 +9,7 @@ plugins:
   - jekyll-feed
   - jekyll-include-cache
 minimal_mistakes_skin: air
-search: true
+# search: false
 
 include:
   - docs
@@ -31,7 +31,7 @@ author:
 defaults:
   # docs
   - scope:
-      path: "/docs/"
+      path: "docs"
       type: pages
     values:
       layout: single
