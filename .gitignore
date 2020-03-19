@@ -1,7 +1,7 @@
 .bundle/
 node_modules/
 vendor/
-
+.jekyll-cache/
 _site/
 .DS_Store
 *.blend1
