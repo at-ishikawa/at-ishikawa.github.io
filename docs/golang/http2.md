@@ -1,11 +1,13 @@
-# HTTP/2
+---
+title: HTTP/2
+---
 Written in March, 2020.
 
 `http` package in golang supports HTTP/2 protocols.
 It's automatically configured.
 
 
-## The features of HTTP/2
+# The features of HTTP/2
 In order to understand the benefits of HTTP/2, [this document](https://developers.google.com/web/fundamentals/performance/http2), provided by google, is helpful.
 It supports a lot of features including followings.
 1. binary format communications
@@ -30,12 +32,12 @@ If clients do not support server push but servers try to do it, then [`http.ErrN
 For the details of this in Go, there is a [page](https://blog.golang.org/h2push) in an official blog.
 
 
-## About examples in this page
+# About examples in this page
 In order to use HTTP/2, it seems TLS must be configured.
 I tried to find the way to configure HTTP servers without TLS, but I couldn't find it.
 
 
-## Reference
+# Reference
 - [Introduction to HTTP/2, written by Google](https://developers.google.com/web/fundamentals/performance/http2)
 - [HTTP/2 Adventure in the Go World](https://posener.github.io/http2/)
 - [HTTP/2 Streaming in Golang](https://www.codemio.com/2018/03/http2-streaming-golang.html)
