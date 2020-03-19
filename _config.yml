@@ -31,7 +31,7 @@ author:
 defaults:
   # docs
   - scope:
-      path: "docs"
+      path: "/docs/"
       type: pages
     values:
       layout: single
