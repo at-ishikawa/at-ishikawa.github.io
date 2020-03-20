@@ -47,6 +47,6 @@ Terraform
 - [GCP](./docs/terraform/gcp)
 
 
-Git
+GitHub
 ----
-- [GitHub Pages](./docs/git/github_pages)
+- [GitHub Pages](./docs/github/github_pages)
