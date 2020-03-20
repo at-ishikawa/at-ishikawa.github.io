@@ -29,11 +29,24 @@ author:
       icon: "fas fa-fw fa-link"
       url: "https://medium.com/@at_ishikawa"
 
+# posts url
+permalink: pretty
 collections:
   docs:
     output: true
 
 defaults:
+  # _posts
+  - scope:
+      path: "_posts"
+      type: posts
+    values:
+      layout: single
+      read_time: true
+      comments: true
+      share: true
+      related: true
+
   # _docs
   - scope:
       path: ""
