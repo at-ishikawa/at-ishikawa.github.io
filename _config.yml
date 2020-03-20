@@ -9,7 +9,8 @@ plugins:
   - jekyll-feed
   - jekyll-include-cache
 minimal_mistakes_skin: air
-# search: false
+search: true
+search_full_content: true
 
 include:
   - docs
@@ -28,11 +29,15 @@ author:
       icon: "fas fa-fw fa-link"
       url: "https://medium.com/@at_ishikawa"
 
+collections:
+  docs:
+    output: true
+
 defaults:
-  # docs
+  # _docs
   - scope:
-      path: "docs"
-      type: pages
+      path: ""
+      type: docs
     values:
       layout: single
       toc: true
@@ -42,7 +47,6 @@ defaults:
       read_time: true
       comments: true
       share: true
-      related: true
 
 analytics:
   provider: "google-universal"
