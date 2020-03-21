@@ -51,5 +51,9 @@ docs:
         url: /docs/terraform/gcp
   - title: Git
     children:
+      - title: "Gitconfig"
+        url: /docs/git/gitconfig
+  - title: GitHub
+    children:
       - title: "GitHub Pages"
-        url: /docs/git/github_pages
+        url: /docs/github/github_pages
