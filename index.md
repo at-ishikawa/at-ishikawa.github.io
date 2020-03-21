@@ -47,6 +47,9 @@ Terraform
 - [Overview](./docs/terraform/overview)
 - [GCP](./docs/terraform/gcp)
 
+Git
+---
+- [Gitconfig](./docs/git/gitconfig)
 
 GitHub
 ----
