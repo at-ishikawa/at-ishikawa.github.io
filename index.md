@@ -33,6 +33,7 @@ Nginx
 
 MySQL
 ----
+- [DDL](./docs/mysql/ddl)
 - [Server configuration](./docs/mysql/server_config)
 - [Tools](./docs/mysql/tools)
 
