@@ -49,6 +49,7 @@ Terraform
 
 Git
 ---
+- [Cli](./docs/git/cli)
 - [Gitconfig](./docs/git/gitconfig)
 
 GitHub
