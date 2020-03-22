@@ -1,0 +1,42 @@
+---
+title: Git cli
+date: '2020-03-21'
+# last_modified_at:
+categories:
+  - git
+tags:
+  - git
+---
+Written in March 2020.
+
+Tools
+===
+
+Rewrite history
+---
+Note that this is **REALLY DANGEROUS** operations and please do it with your responsibility.
+[git-filter-repo](https://github.com/newren/git-filter-repo/) can be used to rewrite history, and it's official tool to replace with [git-filter-branch](https://git-scm.com/docs/git-filter-branch).
+
+### Install on Mac OS
+```
+> brew install git-filter-repo
+```
+
+### How to use
+* Replacing name and email with new one.
+  Use `--email-callback` and `--name-callback` options.
+  For more details, run `git filter-repo --help`.
+```
+> git filter-repo --email-callback 'return email.replace(b"old@gmail.com", b"new@gmail.com")' --name-callback 'return name.replace(b"Old name", b"New name")'
+Parsed 174 commits
+New history written in 0.19 seconds; now repacking/cleaning...
+Repacking your repo and cleaning out old unneeded objects
+HEAD is now at 973ca76 Merge pull request #48 from at-ishikawa/move-grpc
+Enumerating objects: 1365, done.
+Counting objects: 100% (1365/1365), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (717/717), done.
+Writing objects: 100% (1365/1365), done.
+Total 1365 (delta 480), reused 1273 (delta 473)
+Completely finished after 0.67 seconds.
+```
