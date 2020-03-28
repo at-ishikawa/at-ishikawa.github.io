@@ -17,11 +17,7 @@ include:
 
 author:
   name   : "at-ishikawa"
-  bio    : "\"Learn as if you will live forever, live as if you will die tomorrow.\" anime nerd, software engineer"
   links:
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/at_ishikawa"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/at-ishikawa"
