@@ -136,6 +136,10 @@ By following getting started on [official page](https://mmistakes.github.io/mini
 The default search engine is lunr, and it searches collections of jekyll.
 So in order to search pages except posts, those pages should be under a `collection`.
 
+Enable comments
+---
+You can enable them by following [the official document](https://mmistakes.github.io/minimal-mistakes/docs/configuration/#comments).
+
 
 Jekyll
 ===
