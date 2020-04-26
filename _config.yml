@@ -62,3 +62,9 @@ analytics:
   provider: "google-universal"
   google:
     tracking_id: "UA-151505454-1"
+
+comments:
+  provider: "utterances"
+  utterances:
+    theme: "github-light"
+    issue_term: "pathname"
