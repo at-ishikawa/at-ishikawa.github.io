@@ -13,6 +13,10 @@ minimal_mistakes_skin: air
 search: true
 search_full_content: true
 
+after_footer_scripts:
+  # https://www.osano.com/cookieconsent/download/
+  - "https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"
+  - /assets/js/cookie_banner.js
 include:
   - docs
 
