@@ -1,4 +1,5 @@
 remote_theme: "mmistakes/minimal-mistakes@4.19.1"
+repository: "at-ishikawa/at-ishikawa.github.io"
 title: at-ishikawa's pages
 description: The notes about technical things when at-ishikawa looked into them for future use or faced troubles
 plugins:
@@ -61,3 +62,9 @@ analytics:
   provider: "google-universal"
   google:
     tracking_id: "UA-151505454-1"
+
+comments:
+  provider: "utterances"
+  utterances:
+    theme: "github-light"
+    issue_term: "pathname"
