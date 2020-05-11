@@ -24,9 +24,9 @@ JavaScript
 
 GCP
 ----
+- [BigQuery](./docs/gcp/bigquery)
 - [Cloud CDN](./docs/gcp/cloud_cdn)
 - [Cloud Endpoints](./docs/gcp/cloud_endpoints)
-
 
 Kubernetes
 ---
