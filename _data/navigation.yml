@@ -17,6 +17,8 @@ docs:
         url: /docs/javascript/google-closure-library
   - title: GCP
     children:
+      - title: "BigQuery"
+        url: /docs/gcp/bigquery
       - title: "Cloud CDN"
         url: /docs/gcp/cloud_cdn
       - title: "Cloud Endpoints"
