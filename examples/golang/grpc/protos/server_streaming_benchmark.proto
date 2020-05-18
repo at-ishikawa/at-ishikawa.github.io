@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package protos;
+
+service UserService {
+  rpc PaginateUsers (PaginateUsersRequest) returns (PaginateUsersResponse) {}
+  rpc StreamUsers (StreamUsersRequest) returns (stream StreamUsersResponse) {}
+}
+
+message PaginateUsersRequest {
+    string keyword = 1;
+    string pageToken = 2; // initial request is empty string
+}
+
+message User {
+    int64 id = 1;
+    string name = 2;
+}
+
+message PaginateUsersResponse {
+    repeated User users = 1;
+    string nextToken = 2;
+    uint32 totalCount = 3;
+}
+
+message StreamUsersRequest {
+    string keyword = 1;
+    uint32 concurrency = 2;
+}
+
+message StreamUsersResponse {
+    repeated User users = 1;
+    uint32 totalCount = 2;
+}
