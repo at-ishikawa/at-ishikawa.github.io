@@ -19,8 +19,8 @@ Using stream RPC, multiple messages can be sent on a single TCP connection.
 
 # Examples
 Examples include unary RPC(SayHello) and server stream RPC(KeepReplyingHello).
-1. [server/main.go](../../examples/golang/grpc/server/main.go)
-2. [client/main.go](../../examples/golang/grpc/client/main.go)
+1. [server/main.go](/examples/golang/grpc/cmd/helloworld/server/main.go)
+2. [client/main.go](/examples/golang/grpc/cmd/helloworld/client/main.go)
 
 
 # Reference
