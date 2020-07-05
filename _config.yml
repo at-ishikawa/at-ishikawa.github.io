@@ -48,6 +48,18 @@ defaults:
       share: true
       related: true
 
+  - scope:
+      path: "_docs/animation"
+      type: docs
+    values:
+      layout: single
+      toc: true
+      toc_label: "Table of contents"
+      sidebar:
+        nav: "animation"
+      comments: true
+      share: true
+
   # _docs
   - scope:
       path: ""
