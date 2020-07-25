@@ -57,6 +57,8 @@ docs:
         url: /docs/git/cli
       - title: "Gitconfig"
         url: /docs/git/gitconfig
+      - title: "Hooks"
+        url: /docs/git/hooks
   - title: GitHub
     children:
       - title: "GitHub Pages"
