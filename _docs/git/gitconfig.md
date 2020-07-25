@@ -38,6 +38,14 @@ For example, there are two files `~/.gitconfig` and `~/.gitconfig-group`.
 
 Then if a user work on a repository under `~/group` directory, his/her email becomes `example@group.com`, but out of the directory, it becomes `example@default.com`.
 
+Exclude files from global ignore file
+---
+Set `core.excludesfile` config like the next command (from this [stackoverflow answer](https://stackoverflow.com/questions/7335420/global-git-ignore)):
+```
+git config --global core.excludesfile '~/.gitignore'
+```
+
+
 Use cases
 ===
 
