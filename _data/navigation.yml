@@ -39,6 +39,10 @@ docs:
         url: /docs/mysql/ddl
       - title: "Server configuration"
         url: /docs/mysql/server_config
+      - title: "Performance"
+        url: /docs/mysql/performance
+      - title: "Lock"
+        url: /docs/mysql/lock
       - title: "Tools"
         url: /docs/mysql/tools
   - title: SSH
