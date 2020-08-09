@@ -4,6 +4,33 @@ title: MySQL Lock
 
 This document is written for MySQL 5.7, so these contents may be not correct for other versions.
 
+Lock timeout
+===
+
+When you run DDL or DML, in some cases, you may get next error.
+```
+ERROR 1205 (HY000): Lock wait timeout exceeded; try restarting transaction
+```
+
+This is related with `lock_wait_timeout` variable.
+```
+mysql root@127.0.0.1:test> show variables like 'lock_wait_timeout';
++-------------------+----------+
+| Variable_name     | Value    |
++-------------------+----------+
+| lock_wait_timeout | 31536000 |
++-------------------+----------+
+1 row in set
+Time: 0.015s
+```
+
+This variable is for timeout in seconds to acquire metadata locks.
+To see more details, check [official page](https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_lock_wait_timeout).
+
+### Reference
+* [mysql error 1205 lock wait timeout – Quick ways to fix it](https://bobcares.com/blog/mysql-error-1205-lock-wait-timeout/)
+
+
 Lock debugging and monitoring
 ===
 
