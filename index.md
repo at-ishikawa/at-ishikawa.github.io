@@ -30,6 +30,7 @@ GCP
 
 Kubernetes
 ---
+- [CronJob](./docs/kubernetes/cronjob)
 - [kubectl](./docs/kubernetes/kubectl)
 - [helm](./docs/kubernetes/helm/client)
 
