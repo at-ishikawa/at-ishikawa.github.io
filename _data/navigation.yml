@@ -25,6 +25,8 @@ docs:
         url: /docs/gcp/cloud_endpoints
   - title: Kubernetes
     children:
+      - title: "CronJob"
+        url: /docs/kubernetes/cronjob
       - title: "kubectl"
         url: /docs/kubernetes/kubectl
       - title: "helm"
