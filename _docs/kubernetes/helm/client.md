@@ -2,6 +2,15 @@
 title: Helm Client
 ---
 
+Command list
+===
+
+Deployment
+---
+1. See revision history: `helm history <release name>`
+1. Rollback: `helm rollback <release name> [revision]`
+  - Rollback to the previous version if `revision` is 0. (from [this github comment](https://github.com/helm/helm/issues/1796#issuecomment-311385728))
+
 Troubleshootings
 ===
 
