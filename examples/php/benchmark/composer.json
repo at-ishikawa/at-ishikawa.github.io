@@ -1,0 +1,10 @@
+{
+    "require-dev": {
+        "phpbench/phpbench": "^0.17.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Example\\": "src"
+        }
+    }
+}

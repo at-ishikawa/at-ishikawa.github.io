@@ -11,6 +11,10 @@ docs:
         url: /docs/golang/gogoprotobuf
       - title: "HTTP/2"
         url: /docs/golang/http2
+  - title: PHP
+    children:
+      - title: "PHP Benchmarks"
+        url: /docs/php/benchmarks
   - title: JavaScript
     children:
       - title: "Getting Started with Google Closure Library"
