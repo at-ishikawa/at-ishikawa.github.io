@@ -17,6 +17,10 @@ Go
 - [gogo/protobuf: Protocol Buffers for Go with Gadgets](./docs/golang/gogoprotobuf)
 - [HTTP/2](./docs/golang/http2)
 
+PHP
+---
+- [Benchmarks](./docs/php/benchmarks)
+
 JavaScript
 ----
 - [Getting Started with Google Closure Library](./docs/javascript/google-closure-library)
