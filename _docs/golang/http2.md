@@ -18,7 +18,7 @@ It supports a lot of features including followings.
 Some examples are written in [this page](https://posener.github.io/http2/), and I checked it so much.
 
 ## Streaming
-[main.go](../../examples/golang/http2/main.go) is an example for server streaming, including a server and a client codes.
+[main.go](../../examples/golang/http2/cmd/server_stream/main.go) is an example for server streaming, including a server and a client codes.
 The important part is calling `Flush` method, whose interface is [`http.Flusher`](https://golang.org/pkg/net/http/#Flusher) and implemented by `http.ResponseWriter`.
 When this method is used, the buffered data on the server is sent to the client.
 
@@ -30,6 +30,7 @@ However, as of March 2020, `http.Client` in Go does not support server push, nei
 If clients do not support server push but servers try to do it, then [`http.ErrNotSupported`](https://golang.org/src/net/http/request.go?s=1006:1204) is made.
 
 For the details of this in Go, there is a [page](https://blog.golang.org/h2push) in an official blog.
+The example of server code for server push in Go can be found in [this page](https://github.com/golang/blog/tree/master/content/h2push/server).
 
 
 # About examples in this page
