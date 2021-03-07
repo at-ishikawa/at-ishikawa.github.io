@@ -2,14 +2,27 @@
 layout: home
 author_profile: true
 ---
-These pages collect notes for challenges and issues that the I got about technical stuff.
+
+These pages collect
+- developed tools and libraries
+- technical notes from a issue or a challenge I got
+
 
 Developed tools and libraries
-----
+---
 - [Kubectl fzf](https://github.com/at-ishikawa/kubectl-fzf)
 - [Git fzf](https://github.com/at-ishikawa/git-fzf)
 - [Go grpc validator](https://pkg.go.dev/github.com/at-ishikawa/go-grpc-validator/playground/v9?tab=doc)
 - [Protobuf for Google APIs for JavaScript](https://www.npmjs.com/package/@at-ishikawa/googleapis-protobuf)
+
+
+
+Notes
+===
+
+General topics
+---
+- [Code review](./docs/general/code-review)
 
 Go
 ----

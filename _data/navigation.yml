@@ -3,6 +3,11 @@
 #     url: /
 
 docs:
+  - title: General topics
+    children:
+      - title: "Code review"
+        url: /docs/general/code-review
+
   - title: Go
     children:
       - title: "gRPC"
