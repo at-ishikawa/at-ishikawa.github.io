@@ -75,9 +75,3 @@ docs:
     children:
       - title: "GitHub Pages"
         url: /docs/github/github_pages
-
-animation:
-  - title: Animation
-    children:
-      - title: Digital painting
-        url: /docs/animation/digital_painting
