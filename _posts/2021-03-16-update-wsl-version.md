@@ -1,5 +1,5 @@
 ---
-title: Steps to update WSL version from 1 to 2 for me
+title: Notes when I updated a WSL version from 1 to 2
 date: 2021-03-17T00:00:00Z
 ---
 

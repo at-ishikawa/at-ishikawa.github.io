@@ -16,7 +16,7 @@ Join Windows Insider Program
 This is helpful to use some applications before it becomes stable releases, like WSL, and many documents on the Internet is also written for these pre-stable versions.
 
 Once you joined, you wanna make sure turnning on automatic updates for OS version.
-See [this page](https://www.sheffield.ac.uk/it-services/information-security/windows-updat) to turn on on.
+See [this page](https://www.sheffield.ac.uk/it-services/information-security/windows-updat) to turn it on.
 
 
 Windows Subsystem for Linux (WSL)
@@ -42,11 +42,11 @@ You can update it by **Properties > Font > Font**.
 
 ### Troubleshootings
 1. How to upgrade WSL from 1 to 2?
-    - I wrote [an article](/posts/2021-03-16-update-wsl-version) for how I did it.
+    - I wrote [an article](/2021/03/17/update-wsl-version/) for how I did it.
 
 winget
 ---
-[winget](https://docs.microsoft.com/en-us/windows/package-manager/winget/) is a cli to install and manage applications, just like HomeBrew on Mac, apt or yum on Linux.
+[winget](https://docs.microsoft.com/en-us/windows/package-manager/winget/) is a CLI to install and manage applications, just like HomeBrew on Mac, apt or yum on Linux.
 You need to install [App Installer](https://www.microsoft.com/en-us/p/app-installer/9nblggh4nns1?activetab=pivot:overviewtab) to use this tool, and also need to join Windows Insider Program to install it.
 
 
