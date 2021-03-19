@@ -75,3 +75,7 @@ docs:
     children:
       - title: "GitHub Pages"
         url: /docs/github/github_pages
+  - title: Windows
+    children:
+      - title: "Setup"
+        url: /docs/windows/setup

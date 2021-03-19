@@ -71,3 +71,7 @@ Git
 GitHub
 ----
 - [GitHub Pages](./docs/github/github_pages)
+
+Windows
+---
+- [Setup a computer](./docs/windows/setup)
