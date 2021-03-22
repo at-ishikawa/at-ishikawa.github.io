@@ -43,6 +43,8 @@ You can update it by **Properties > Font > Font**.
 ### Troubleshootings
 1. How to upgrade WSL from 1 to 2?
     - I wrote [an article](/2021/03/17/update-wsl-version/) for how I did it.
+1. Network speed on WSL 2 is terribly slow.
+    - You have to do disable "Large Send Offload". You can do it on `Device Manager > Network adapters > Hyper-V Virtual Ethernet Adapter > Properties > Advanced`. See [this comment on GitHub issue](https://github.com/microsoft/WSL/issues/4901#issuecomment-748531438) for more details.
 
 winget
 ---
@@ -68,3 +70,25 @@ See [this article](https://www.pcmag.com/how-to/how-to-enable-dark-mode-in-windo
 Unfortunately, there is no built-in feature to switch a light and dark mode automatically.
 In order to enable Dark mode only during sunset, you need to set up something.
 The way I did was using a Task Scheduler to enable Dark mode automatically at night and disable it on the morning, by following [this article](https://www.howtogeek.com/356087/how-to-automatically-enable-windows-10s-dark-theme-at-night/).
+
+
+Languages and keyboards
+---
+
+### Install Japanese IME and change a shortcut key
+You can use Google Japanese Input to use Japanese in your computer.
+In order to change the shortcut key to `Ctrl+space` to switch an input method, go to `Propertites` of Google Japanese Input Settings, click `Customize` of Keymap style under General tab, and update Key column to `Ctrl Space` on each command of `Activate/Deactivate IMEI` of every mode.
+See [this post](https://hrroct.hatenablog.com/entry/2017/12/17/225039), written in Japanese, for more details.
+
+### Use shortcut keys of Emacs
+**There is a disadvantage for this configuration, like Ctrl-k works twice on Emacs on WSL unexpectedly. So I may disable this in the future.**
+
+First of all, in order to customize short cut keys on Windows, [AutoHotKey](https://www.autohotkey.com/) might be useful.
+Then you might wanna use a few shortcut keys of Emacs on most of applications such as moving cursors by Ctrl-f, but you do not need full Emacs customization like Ctrl-x and doing something else, like Mac.
+In this case, [gtk-emacs-theme-like](https://github.com/lintaro-jp/gtk-emacs-theme-like.ahk), tiny AutoHotKey configuration, can be used to do it.
+
+Also, you can also set this configuration on every boot.
+At first, you have to run `shell:startup` after you type `Win+R` and you can see a folder on your explorer.
+Then right click and select "Paste shortcut" in the folder.
+Now the script run every time you start your computer.
+See [this FAQ](https://www.autohotkey.com/docs/FAQ.htm#Startup) for more details.

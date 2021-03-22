@@ -86,3 +86,13 @@ These are steps I did to update the WSL version.
       * Ubuntu          Stopped         2
         Ubuntu-20.04    Stopped         1
     ```
+
+Edited
+===
+
+On March 22, 2021 - Very slow network issue
+---
+
+I had an issue of very slow network on WSL 2 and I had to wait for a long time while I was using apt or git.
+After seeing [this comment](https://github.com/microsoft/WSL/issues/4901#issuecomment-748531438), I was able to solve the issue by disabling "Large Send Offload".
+I did it on `Device Manager > Network adapters > Hyper-V Virtual Ethernet Adapter > Properties > Advanced`.
