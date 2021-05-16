@@ -14,6 +14,7 @@ Developed tools and libraries
 Go
 ----
 - [gRPC](./docs/golang/grpc)
+- [MySQL](./docs/golang/mysql)
 - [gogo/protobuf: Protocol Buffers for Go with Gadgets](./docs/golang/gogoprotobuf)
 - [HTTP/2](./docs/golang/http2)
 
