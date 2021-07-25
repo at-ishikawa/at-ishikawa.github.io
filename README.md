@@ -10,4 +10,5 @@
 
 ## Contributing
 1. To setup this repository: `make setup`
+    - JEKYLL_GITHUB_TOKEN environment variable is required
 1. To start working on HTML servers locally: `make serve`

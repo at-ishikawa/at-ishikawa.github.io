@@ -73,6 +73,10 @@ GitHub
 ----
 - [GitHub Pages](./docs/github/github_pages)
 
+IntelliJ IDEs
+---
+- [Plugin development](./docs/intellij/plugin)
+
 Windows
 ---
 - [Setup a computer](./docs/windows/setup)
