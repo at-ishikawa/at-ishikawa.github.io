@@ -77,6 +77,10 @@ docs:
     children:
       - title: "GitHub Pages"
         url: /docs/github/github_pages
+  - title: Ubuntu
+    children:
+      - title: "Setup a desktop computer"
+        url: /docs/ubuntu/setup
   - title: Windows
     children:
       - title: "Setup"

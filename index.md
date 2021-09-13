@@ -77,6 +77,10 @@ IntelliJ IDEs
 ---
 - [Plugin development](./docs/intellij/plugin)
 
+Ubuntu
+---
+- [Setup a desktop computer](./docs/ubuntu/setup)
+
 Windows
 ---
 - [Setup a computer](./docs/windows/setup)
