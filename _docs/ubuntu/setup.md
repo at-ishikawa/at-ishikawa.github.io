@@ -69,6 +69,18 @@ Run next commands to install git, emacs, and tmux
 sudo apt git emacs tmux fish
 ```
 
+### Install gh
+Note that it's not recommended to install it via snap according to [this comment](https://github.com/cli/cli/issues/3185#issuecomment-797596234)
+I also got the issue on the above.
+So, follow an [official document](https://github.com/cli/cli/blob/trunk/docs/install_linux.md) to install this cli.
+```
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo gpg --dearmor -o /usr/share/keyrings/githubcli-archive-keyring.gpg
+echo deb [arch=(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+sudo apt update
+sudo apt install gh
+```
+
+
 Install 1Password GUI and CLI
 ---
 
