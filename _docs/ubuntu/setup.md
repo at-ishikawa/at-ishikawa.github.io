@@ -31,6 +31,11 @@ Before setting a keyboard, install [Gnome tweaks](https://wiki.gnome.org/action/
 sudo apt install gnome-tweaks
 ```
 
+#### Use Emacs shortcut keys everywhere
+* Run `gnome-tweaks`
+* Open **Keyboard & Mouse** tab and enable **Emacs Input**
+There are other ways described in [this thread](https://www.reddit.com/r/emacs/comments/c22ff1/gtk_4_support_for_key_themes_does_not_affect/)
+
 #### Swap Caps Lock key with a Ctrl key.
 * Run `gnome-tweaks`
 * Open **Keyboard & Mouse > Additional Layout Options > Caps Lock behavior** and choose **Caps Lock is also a Ctrl**.
@@ -75,6 +80,18 @@ To set up CLI, run the next command at first
 ```
 > op signin my.1password.com example@example.com
 ```
+
+ULauncher
+---
+I installed [ULauncher](https://ulauncher.io/) as a launcher in Ubuntu.
+To download it, run next command.
+```
+sudo add-apt-repository ppa:agornostal/ulauncher && sudo apt update && sudo apt install ulauncher
+```
+
+But it didn't work as expected.
+In order to make it work, I have to update a few things by following [this document](https://github.com/Ulauncher/Ulauncher/wiki/Hotkey-In-Wayland)
+
 
 YouTube
 ---
