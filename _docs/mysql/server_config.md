@@ -2,6 +2,60 @@
 title: MySQL server configuration
 ---
 
+Replication
+===
+
+This configuration is for the version 5.7 and it's minimum configuration in [the official document](https://dev.mysql.com/doc/refman/5.7/en/replication-configuration.html).
+
+There are 2 types of replication setup.
+
+* Using binary log file positions
+* Using Global Transaction Identifiers
+
+The basic configurations for binary log file positions
+---
+* `server-id`: The unique ID on each server, and must be a positive integer between 1 and 2^32-1. The default value is 0.
+* `log-bin`: the file name for binary logs. This is required to enable replications using binary loggings.
+    Binary loggings are not required on read replicas, but they can be used for data backups and crash recovery.
+
+Besides,
+* Create a user who can connect to the main db from each replica and grant **REPLICATION SLAVE** permission to them.
+  Note that it's better to create a separate user because **this username and password are stored in plain text in the replication metadata repositories.**
+
+### Main DB configuration
+
+```
+[mysqld]
+server-id = 1
+log-bin = mysql-bin
+```
+
+Create a user for replication.
+
+```
+CREATE USER 'repl'@'%' IDENTIFIED BY 'password';
+GRANT REPLICATION SLAVE ON *.* TO 'repl'@'%';
+```
+
+### Replica DB configuration
+
+```
+[mysqld]
+server-id = 11
+log-bin = mysql-bin
+```
+
+In order to connect to the main DB,
+```
+STOP SLAVE;
+CHANGE MASTER TO
+    MASTER_HOST='$mysql_main_server',
+    MASTER_USER='repl',
+    MASTER_PASSWORD='password';
+START SLAVE;        
+```
+
+
 Logs
 ===
 
