@@ -15,9 +15,22 @@ There is a video to describe what issue gh-ost is used to solve.
 Getting Started
 ---
 
-### Build a binary from source code
+There are documents that are helpful for this article.
+- [Cheatsheet](https://github.com/github/gh-ost/blob/master/doc/cheatsheet.md)
 
-We need go which is version > 1.15
+
+### Prerequisite
+
+- When gh-ost connects to a replica and migrates on master
+    - If a replication is SBR
+        - `log_bin` and `log_slave_updates` must be enabled on a read replica server
+        - `binlog_format=ROW` 
+    - If a replication is RBR
+- When gh-ost connects to a main DB and migrates on master
+    - A replication must be RBR
+
+
+### Build a binary from source code
 
 ```
 > wget https://github.com/github/gh-ost/releases/download/v1.1.2/gh-ost-binary-linux-20210617134741.tar.gz
@@ -44,4 +57,43 @@ gh-ost
 > mv gh-ost /path/to/bin/
 ```
 
-### Test to run a gh-ost cli
+### Dry run a migration without a real update
+
+Without an `--execute` option, gh-ost runs DB migration for testing.
+Next CLI runs to add new column email on my_table in my_schema DB.
+```
+gh-ost \
+--max-load=Threads_running=25 \
+--critical-load=Threads_running=1000 \
+--chunk-size=1000 \
+--throttle-control-replicas="myreplica.1.com,myreplica.2.com" \
+--max-lag-millis=1500 \
+--user="gh-ost" \
+--password="123456" \
+--host=replica.with.rbr.com \
+--database="my_schema" \
+--table="my_table" \
+--verbose \
+--alter="ALTER TABLE users ADD COLUMN email VARCHAR(255)" \
+--switch-to-rbr \
+--allow-master-master \
+--cut-over=default \
+--exact-rowcount \
+--concurrent-rowcount \
+--default-retries=120 \
+--panic-flag-file=/tmp/ghost.panic.flag \
+--postpone-cut-over-flag-file=/tmp/ghost.postpone.flag \
+[--execute]
+```
+
+With an `--execute` option, gh-ost runs DB migration and flips tables.
+
+### Example
+
+Go to [/examples/mysql/cluster](/examples/mysql/cluster) and start a DB cluster.
+```
+docker-compose up -d
+```
+
+`gh-ost` is installed in both of `main` and `read-replica` containers.
+Note that data is deleted when a container stops.
