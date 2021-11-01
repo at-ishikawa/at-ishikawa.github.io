@@ -90,7 +90,7 @@ With an `--execute` option, gh-ost runs DB migration and flips tables.
 
 ### Example
 
-Go to [/examples/mysql/cluster](/examples/mysql/cluster) and start a DB cluster.
+Go to [/examples/mysql/cluster](https://github.com/at-ishikawa/at-ishikawa.github.io/examples/mysql/cluster) and start a DB cluster.
 ```
 docker-compose up -d
 ```

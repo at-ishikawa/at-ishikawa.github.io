@@ -49,10 +49,14 @@ docs:
         url: /docs/mysql/ddl
       - title: "Server configuration"
         url: /docs/mysql/server_config
+      - title: "Replication"
+        url: /docs/mysql/replication
       - title: "Performance"
         url: /docs/mysql/performance
       - title: "Lock"
         url: /docs/mysql/lock
+      - title: "gh-ost"
+        url: /docs/mysql/gh-ost
       - title: "Tools"
         url: /docs/mysql/tools
   - title: SSH
