@@ -1,0 +1,37 @@
+version: '3.3'
+
+networks:
+  db:
+    driver: bridge
+
+services:
+  main:
+    build:
+      context: .
+    volumes:
+#      - data:/var/lib/mysql:rw
+      - ./main/my.cnf:/etc/my.cnf
+      - ./main/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: test
+    networks:
+      - db
+
+  read-replica-1:
+    build:
+      context: .
+    volumes:
+#      - data:/var/lib/mysql:rw
+      - ./read-replica/my.cnf:/etc/my.cnf
+      - ./read-replica/init.sh:/docker-entrypoint-initdb.d/init.sh
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    depends_on:
+      - main  
+    networks:
+      - db
+
+volumes:
+  data:
+    driver: local

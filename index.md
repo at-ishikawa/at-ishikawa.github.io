@@ -49,8 +49,10 @@ MySQL
 ----
 - [DDL](./docs/mysql/ddl)
 - [Server configuration](./docs/mysql/server_config)
+- [Replication](./docs/mysql/replication)
 - [Performance](./docs/mysql/performance)
 - [Lock](./docs/mysql/lock)
+- [gh-ost](./docs/mysql/gh-ost)
 - [Tools](./docs/mysql/tools)
 
 SSH
