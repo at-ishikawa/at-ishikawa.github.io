@@ -6,6 +6,7 @@ networks:
 
 services:
   main:
+    hostname: main
     build:
       context: .
     volumes:
@@ -19,6 +20,7 @@ services:
       - db
 
   read-replica-1:
+    hostname: read-replica-1
     build:
       context: .
     volumes:
@@ -27,8 +29,65 @@ services:
       - ./read-replica/init.sh:/docker-entrypoint-initdb.d/init.sh
     environment:
       MYSQL_ROOT_PASSWORD: password
+    command:
+      - --server-id=11
     depends_on:
-      - main  
+      - main
+    networks:
+      - db
+
+  read-replica-2:
+    hostname: read-replica-2
+    build:
+      context: .
+    volumes:
+#      - data:/var/lib/mysql:rw
+      - ./read-replica/my.cnf:/etc/my.cnf
+      - ./read-replica/init.sh:/docker-entrypoint-initdb.d/init.sh
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    command:
+      - --server-id=12
+    depends_on:
+      - main
+    networks:
+      - db
+
+  orchestrator-mysql:
+    build:
+      context: .
+    volumes:
+      - ./orchestrator-mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    networks:
+      - db
+
+  dockerize:
+    image: jwilder/dockerize
+    command:
+      - -wait
+      - tcp://main:3306
+      - -wait
+      - tcp://read-replica-1:3306
+      - -wait
+      - tcp://read-replica-2:3306
+      - -wait
+      - tcp://orchestrator-mysql:3306
+    depends_on:
+      - main
+      - read-replica-1
+      - read-replica-2
+      - orchestrator-mysql
+
+  orchestrator:
+    image: orchestrator:latest
+    ports:
+      - 3000:3000
+    volumes:
+      - ./orchestrator/orchestrator.conf.json:/etc/orchestrator.conf.json
+    depends_on:
+      - dockerize
     networks:
       - db
 

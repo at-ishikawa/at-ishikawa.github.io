@@ -1,0 +1,10 @@
+{
+    "MySQLOrchestratorHost": "orchestrator-mysql",
+    "MySQLOrchestratorPort": 3306,
+    "MySQLOrchestratorDatabase": "orchestrator",
+    "MySQLOrchestratorUser": "orchestrator",
+    "MySQLOrchestratorPassword": "password",
+
+    "MySQLTopologyUser": "orchestrator",
+    "MySQLTopologyPassword": "password"
+}

@@ -53,6 +53,7 @@ MySQL
 - [Performance](./docs/mysql/performance)
 - [Lock](./docs/mysql/lock)
 - [gh-ost](./docs/mysql/gh-ost)
+- [Orchestrator](./docs/mysql/orchestrator)
 - [Tools](./docs/mysql/tools)
 
 SSH

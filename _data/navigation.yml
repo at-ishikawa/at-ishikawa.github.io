@@ -57,6 +57,8 @@ docs:
         url: /docs/mysql/lock
       - title: "gh-ost"
         url: /docs/mysql/gh-ost
+      - title: "Orchestrator"
+        url: /docs/mysql/orchestrator
       - title: "Tools"
         url: /docs/mysql/tools
   - title: SSH
