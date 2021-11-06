@@ -56,6 +56,12 @@ MySQL
 - [Orchestrator](./docs/mysql/orchestrator)
 - [Tools](./docs/mysql/tools)
 
+
+Consul
+---
+- [Getting Started](./docs/consul/getting_started)
+
+
 SSH
 ----
 - [Client](./docs/ssh/client)

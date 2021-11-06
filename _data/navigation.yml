@@ -61,6 +61,10 @@ docs:
         url: /docs/mysql/orchestrator
       - title: "Tools"
         url: /docs/mysql/tools
+  - title: Consul
+    children:
+      - title: "Getting Started"
+        url: /docs/consul/getting_started
   - title: SSH
     children:
       - title: "Client"

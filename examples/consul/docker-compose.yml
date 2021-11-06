@@ -1,0 +1,29 @@
+version: '3.3'
+
+services:
+  consul-server1:
+    image: consul
+    networks:
+      - cluster
+    ports:
+      - 8500:8500
+    volumes:
+      - ./server.json:/consul/config/server.json:ro
+    command:
+      - "agent"
+      - "--retry-join"
+      - "consul-server2"
+
+  consul-server2:
+    image: consul
+    networks:
+      - cluster
+    volumes:
+      - ./server.json:/consul/config/server.json:ro
+    command:
+      - "agent"
+      - "--retry-join"
+      - "consul-server2"
+
+networks:
+  cluster:
