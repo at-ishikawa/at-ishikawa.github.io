@@ -1,11 +1,9 @@
 ---
-title:
+title: MySQL Orchestrator
 ---
 
-Orchestrator
-===
+[Orchestrator](https://github.com/openark/orchestrator) is a tool for MySQL HA and replication management.
 
-[orchestrator](https://github.com/openark/orchestrator) is a tool for MySQL HA and replication management.
 
 Getting started
 ---
@@ -15,6 +13,10 @@ This is a simple set up document to set up an orchestrator.
 I just followed these documents at first.
 - https://github.com/wagnerjfr/orchestrator-mysql-replication-docker
 - https://github.com/openark/orchestrator/blob/master/docs/install.md
+
+### Prerequisite
+
+- In order to promote a read replica to a main DB, it looks GTID based replication needs to be enabled.
 
 ### Build a docker image
 
@@ -93,24 +95,20 @@ main:3306             [0s,ok,5.7.36-log,rw,ROW,>>]
 
 ### Out of scopes
 * How to set a main DB of a topology by the configuration
-* How to solve "NoFailoverSupportStructureWarning"
 
 ### Troubleshootings
 #### Error when a read replica is promoted to a main DB
-Error message
-
 The example of an error message.
 ```
 Desginated instance read-replica-2:3306 cannot take over all of its siblings. Error: 2021-11-04 04:34:36 ERROR Relocating 1 replicas of main:3306 below read-replica-2:3306 turns to be too complex; please do it manually
 ```
 
-By cli, the same result.
+By cli, the same result happened.
 ```
 bash-5.1# orchestrator-client -c graceful-master-takeover -a main:3306 -d read-replica-1
 Desginated instance read-replica-1:3306 cannot take over all of its siblings. Error: 2021-11-04 05:37:45 ERROR Relocating 1 replicas of main:3306 below read-replica-1:3306 turns to be too complex; please do it manually
 ```
 
-In [a GitHub issue](https://github.com/openark/orchestrator/issues/876),
-it says `log_slave_updates` has to be turned on, so I did on all MySQL servers, including main DB, too.
+After GTID replication on MySQL turned on, this error was gone.
 
-But it didn't solve.
+I also tried to turn on `log_slave_updates` on all MySQL servers by following one comment of [a GitHub issue](https://github.com/openark/orchestrator/issues/876), but didn't solve.

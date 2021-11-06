@@ -23,7 +23,8 @@ STOP SLAVE;
 CHANGE MASTER TO
     MASTER_HOST='$mysql_main_server',
     MASTER_USER='repl',
-    MASTER_PASSWORD='password';
+    MASTER_PASSWORD='password',
+    MASTER_AUTO_POSITION=1;
 START SLAVE;
 EOF
 

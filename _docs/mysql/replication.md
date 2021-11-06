@@ -9,8 +9,10 @@ There are 2 types of replication setup.
 * Using binary log file positions
 * Using Global Transaction Identifiers
 
-The basic configurations for binary logging
+Binary logging replication
 ---
+
+There are a couple of important configurations
 * `server-id`: The unique ID on each server, and must be a positive integer between 1 and 2^32-1. The default value is 0.
 * `log-bin`: the file name for binary logs. This is required to enable replications using binary loggings.
     Binary loggings are not required on read replicas, but they can be used for data backups and crash recovery.
@@ -49,8 +51,20 @@ CHANGE MASTER TO
     MASTER_HOST='$mysql_main_server',
     MASTER_USER='repl',
     MASTER_PASSWORD='password';
-START SLAVE;        
+START SLAVE;
 ```
+
+
+Replication with GTID
+---
+
+Next YouTube video may be helpful to understand the operation and configuration on GTID replication
+<iframe width="560" height="315" src="https://www.youtube.com/embed/cVymVWZ7SPw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+There are a couple of configurations to enable GTID based replication
+* [gtid_mode](https://dev.mysql.com/doc/refman/5.7/en/replication-options-gtids.html#sysvar_gtid_mode) = on: GTID based logging is enabled
+* [enforce_gtid_consistency](https://dev.mysql.com/doc/refman/5.7/en/replication-options-gtids.html#sysvar_enforce_gtid_consistency): allow execution of only statements that can be safely logged using a GTID
+
 
 
 The other configuration
