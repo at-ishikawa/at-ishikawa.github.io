@@ -67,6 +67,50 @@ Configure MySQL settings for orchestrator MySQL server and also managed MySQL to
 Then start the Orchestrator with a few Docker containers.
 
 
+### Support a failover
+
+There is an [MySQL configuration about failover](https://github.com/openark/orchestrator/blob/master/docs/configuration-recovery.md#mysql-configuration).
+Also, all MySQL servers have to turn on `log_slave_updates` option.
+
+
+orchestrator-cli
+---
+
+In order to list up clusters
+```
+bash-5.1# orchestrator-client  -c clusters
+main:3306
+```
+
+In order to check a topology of each cluster
+```
+bash-5.1# orchestrator-client  -c topology -i main:3306
+main:3306             [0s,ok,5.7.36-log,rw,ROW,>>]
++ read-replica-1:3306 [0s,ok,5.7.36-log,rw,ROW,>>]
++ read-replica-2:3306 [0s,ok,5.7.36-log,rw,ROW,>>]
+```
+
+
 ### Out of scopes
 * How to set a main DB of a topology by the configuration
 * How to solve "NoFailoverSupportStructureWarning"
+
+### Troubleshootings
+#### Error when a read replica is promoted to a main DB
+Error message
+
+The example of an error message.
+```
+Desginated instance read-replica-2:3306 cannot take over all of its siblings. Error: 2021-11-04 04:34:36 ERROR Relocating 1 replicas of main:3306 below read-replica-2:3306 turns to be too complex; please do it manually
+```
+
+By cli, the same result.
+```
+bash-5.1# orchestrator-client -c graceful-master-takeover -a main:3306 -d read-replica-1
+Desginated instance read-replica-1:3306 cannot take over all of its siblings. Error: 2021-11-04 05:37:45 ERROR Relocating 1 replicas of main:3306 below read-replica-1:3306 turns to be too complex; please do it manually
+```
+
+In [a GitHub issue](https://github.com/openark/orchestrator/issues/876),
+it says `log_slave_updates` has to be turned on, so I did on all MySQL servers, including main DB, too.
+
+But it didn't solve.
