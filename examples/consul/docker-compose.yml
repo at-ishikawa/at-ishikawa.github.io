@@ -3,6 +3,7 @@ version: '3.3'
 services:
   consul-server1:
     image: consul
+    hostname: "consul-server1"
     networks:
       - cluster
     ports:
@@ -16,12 +17,25 @@ services:
 
   consul-server2:
     image: consul
+    hostname: "consul-server2"
     networks:
       - cluster
     volumes:
       - ./server.json:/consul/config/server.json:ro
     command:
       - "agent"
+      - "--retry-join"
+      - "consul-server2"
+
+  consul-client:
+    image: consul
+    hostname: "consul-client"
+    networks:
+      - cluster
+    command:
+      - "agent"
+      - "--retry-join"
+      - "consul-server1"
       - "--retry-join"
       - "consul-server2"
 

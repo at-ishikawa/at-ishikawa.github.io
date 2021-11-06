@@ -24,6 +24,7 @@ version: '3.3'
 services:
   consul-server1:
     image: consul
+    hostname: "consul-server1"
     networks:
       - cluster
     ports:
@@ -37,6 +38,7 @@ services:
 
   consul-server2:
     image: consul
+    hostname: "consul-server2"
     networks:
       - cluster
     volumes:
@@ -68,4 +70,65 @@ Then, after containers started, the Web UI can be seen on the `http://127.0.0.1/
 
 ![1st web ui](/assets/images/docs/consul/getting_started/1st_web_ui.png)
 
+
+Add a consul-client container
+---
+
+Add a consul-client container into the 1st docker-compose.yml
+
+```
+version: '3.3'
+
+services:
+  consul-server1:
+    image: consul
+    hostname: "consul-server1"
+    networks:
+      - cluster
+    ports:
+      - 8500:8500
+    volumes:
+      - ./server.json:/consul/config/server.json:ro
+    command:
+      - "agent"
+      - "--retry-join"
+      - "consul-server2"
+
+  consul-server2:
+    image: consul
+    hostname: "consul-server2"
+    networks:
+      - cluster
+    volumes:
+      - ./server.json:/consul/config/server.json:ro
+    command:
+      - "agent"
+      - "--retry-join"
+      - "consul-server2"
+
+  consul-client:
+    image: consul
+    hostname: "consul-client"
+    networks:
+      - cluster
+    command:
+      - "agent"
+      - "--retry-join"
+      - "consul-server1"
+      - "--retry-join"
+      - "consul-server2"
+
+networks:
+  cluster:
+```
+
+Once it starts, we can use consul client with new container.
+
+```
+> docker exec consul_consul-client_1 consul members
+Node            Address          Status  Type    Build   Protocol  DC   Segment
+consul-server1  172.29.0.3:8301  alive   server  1.10.3  2         dc1  <all>
+consul-server2  172.29.0.4:8301  alive   server  1.10.3  2         dc1  <all>
+consul-client   172.29.0.2:8301  alive   client  1.10.3  2         dc1  <default>
+```
 
