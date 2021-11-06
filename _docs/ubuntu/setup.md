@@ -80,6 +80,17 @@ sudo apt update
 sudo apt install gh
 ```
 
+### Install docker
+
+First, install docker. I forgot how I did, so please check the Internet.
+Then in order to run docker commands without `sudo`, add your user into docker group, by following [this article](https://www.cloudsavvyit.com/10623/how-to-install-docker-and-docker-compose-on-linux/)
+
+```
+sudo usermod -aG docker $USER
+```
+
+Then restart your machine.
+
 
 Install 1Password GUI and CLI
 ---
