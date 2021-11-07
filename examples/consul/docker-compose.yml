@@ -8,6 +8,7 @@ services:
       - cluster
     ports:
       - 8500:8500
+      - 8600:8600
     volumes:
       - ./server.json:/consul/config/server.json:ro
     command:
@@ -38,6 +39,39 @@ services:
       - "consul-server1"
       - "--retry-join"
       - "consul-server2"
+
+  web:
+    image: nginx
+    ports:
+      - 8080:80
+    networks:
+      - cluster
+
+  curl:
+    image: curlimages/curl
+    networks:
+      - cluster
+    volumes:
+      - ./web.json:/web.json
+    command:
+      - "-XPUT"
+      - "--data"
+      - "@/web.json"
+      - "http://consul-server1:8500/v1/catalog/register"
+    depends_on:
+      - consul-server1
+      - consul-server2
+
+  dnsutils:
+    image: tutum/dnsutils
+    networks:
+      - cluster
+    command:
+      - "dig"
+      - "@consul-server1"
+      - "-p"
+      - "8600"
+      - "consul.service.consul"
 
 networks:
   cluster:
