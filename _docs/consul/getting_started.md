@@ -386,4 +386,5 @@ This can also be solved by adding "addresses.dns = "0.0.0.0".
 
 
 ### Reference
-- [Configuration](https://github.com/at-ishikawa.github.io/blob/master/examples/consul/)
+- [Configuration](https://github.com/at-ishikawa/at-ishikawa.github.io/tree/main/examples/consul)
+
