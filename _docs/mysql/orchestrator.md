@@ -169,8 +169,10 @@ main:3306
 ```
 
 
-### Troubleshootings
-#### Error when a read replica is promoted to a main DB
+Troubleshootings
+---
+
+### Error when a read replica is promoted to a main DB
 The example of an error message.
 ```
 Desginated instance read-replica-2:3306 cannot take over all of its siblings. Error: 2021-11-04 04:34:36 ERROR Relocating 1 replicas of main:3306 below read-replica-2:3306 turns to be too complex; please do it manually
@@ -185,3 +187,9 @@ Desginated instance read-replica-1:3306 cannot take over all of its siblings. Er
 After GTID replication on MySQL turned on, this error was gone.
 
 I also tried to turn on `log_slave_updates` on all MySQL servers by following one comment of [a GitHub issue](https://github.com/openark/orchestrator/issues/876), but didn't solve.
+
+
+
+Reference
+---
+- [docker-compose example](https://github.com/at-ishikawa/at-ishikawa.github.io/tree/main/examples/mysql/cluster)
