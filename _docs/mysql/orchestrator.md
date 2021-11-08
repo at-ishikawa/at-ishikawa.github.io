@@ -67,12 +67,82 @@ Configure MySQL settings for orchestrator MySQL server and also managed MySQL to
 ```
 
 Then start the Orchestrator with a few Docker containers.
+After starting a container, access orchestrator UI by 127.0.0.1:3000
+
+
+### Register a DB cluster into the Orchestrator
+
+On UI, a new DB cluster can be registered.
+On CLI, we can register it by next.
+```
+> docker exec -it cluster_orchestrator_1 orchestrator-client -c discover -i main:3306
+main:3306
+```
+
+### Use Consul as a KV store
+
+The reason for why a KV store is used and configuration for Consul can be found on the official documents
+- [Key-Value stores](https://github.com/openark/orchestrator/blob/master/docs/kv.md)
+- [Configuration: Key-Value stores](https://github.com/openark/orchestrator/blob/master/docs/configuration-kv.md)
+
+First, update a few fields in `orchestrator.conf.json`.
+The details of them can be seen on the above document.
+
+```
+...
+    "KVClusterMasterPrefix": "mysql/main",
+    "ConsulAddress": "consul-server1:8500",
+    "ConsulCrossDataCenterDistribution": true,
+...
+```
+
+Note that this configuration assumes that Consul agent isn't installed an orchestrator instance.
+Also, I couldn't figure out how to resolve DNS using consul containers so that we can use Consul DNS name like `consul.service..consul`, so the traffic isn't load balanced.
+
+
+Then, after a cluster is registered on Orchestrator, KVs also are stored in Consul.
+It can be checked by a consul client.
+
+```
+> docker exec -it cluster_consul-client_1 consul kv export
+[
+	{
+		"key": "mysql/main/main",
+		"flags": 0,
+		"value": "bWFpbjozMzA2"
+	},
+	{
+		"key": "mysql/main/main/hostname",
+		"flags": 0,
+		"value": "bWFpbg=="
+	},
+	{
+		"key": "mysql/main/main/ipv4",
+		"flags": 0,
+		"value": "MTkyLjE2OC4yMDguMg=="
+	},
+	{
+		"key": "mysql/main/main/ipv6",
+		"flags": 0,
+		"value": ""
+	},
+	{
+		"key": "mysql/main/main/port",
+		"flags": 0,
+		"value": "MzMwNg=="
+	}
+]
+```
 
 
 ### Support a failover
 
 There is an [MySQL configuration about failover](https://github.com/openark/orchestrator/blob/master/docs/configuration-recovery.md#mysql-configuration).
 Also, all MySQL servers have to turn on `log_slave_updates` option.
+
+In order to promote a read replica on Main DB, it seems configuring GTID is required.
+Maybe Pseudo GTID also works, but haven't tried.
+At least it doesn't work for binary logging based replications.
 
 
 orchestrator-cli
@@ -92,9 +162,12 @@ main:3306             [0s,ok,5.7.36-log,rw,ROW,>>]
 + read-replica-2:3306 [0s,ok,5.7.36-log,rw,ROW,>>]
 ```
 
+To register a cluster
+```
+> orchestrator-client -c discover -i main:3306
+main:3306
+```
 
-### Out of scopes
-* How to set a main DB of a topology by the configuration
 
 ### Troubleshootings
 #### Error when a read replica is promoted to a main DB

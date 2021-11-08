@@ -74,11 +74,17 @@ services:
       - tcp://read-replica-2:3306
       - -wait
       - tcp://orchestrator-mysql:3306
+      - -wait
+      - tcp://consul-server1:8500
+      - -wait
+      - tcp://consul-server2:8500
     depends_on:
       - main
       - read-replica-1
       - read-replica-2
       - orchestrator-mysql
+      - consul-server1
+      - consul-server2
 
   orchestrator:
     image: orchestrator:latest
@@ -90,6 +96,61 @@ services:
       - dockerize
     networks:
       - db
+
+  consul-server1:
+    image: consul
+    hostname: "consul-server1"
+    networks:
+      - db
+    ports:
+      - 8500:8500
+      - 8600:8600
+    volumes:
+      - ./consul/server.json:/consul/config/server.json:ro
+    command:
+      - "agent"
+      - "--retry-join"
+      - "consul-server2"
+
+  consul-server2:
+    image: consul
+    hostname: "consul-server2"
+    networks:
+      - db
+    volumes:
+      - ./consul/server.json:/consul/config/server.json:ro
+    command:
+      - "agent"
+      - "--retry-join"
+      - "consul-server2"
+
+  consul-client:
+    image: consul
+    hostname: "consul-client"
+    networks:
+      - db
+    command:
+      - "agent"
+      - "--retry-join"
+      - "consul-server1"
+      - "--retry-join"
+      - "consul-server2"
+    depends_on:
+      - dockerize
+
+  curl:
+    image: curlimages/curl
+    networks:
+      - db
+    volumes:
+      - ./consul/db.json:/db.json
+    command:
+      - "-XPUT"
+      - "--data"
+      - "@/db.json"
+      - "http://consul-server1:8500/v1/catalog/register"
+    depends_on:
+      - dockerize
 
 volumes:
   data:

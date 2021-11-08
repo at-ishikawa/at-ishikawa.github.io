@@ -8,6 +8,10 @@
     "MySQLTopologyUser": "orchestrator",
     "MySQLTopologyPassword": "password",
 
+    "KVClusterMasterPrefix": "mysql/main",
+    "ConsulAddress": "consul-server1:8500",
+    "ConsulCrossDataCenterDistribution": true,
+
     "Debug": true,
     "EnableSyslog": false,
     "ListenAddress": ":3000",
@@ -143,7 +147,6 @@
     "GraphiteAddr": "",
     "GraphitePath": "",
     "GraphiteConvertHostnameDotsToUnderscores": true,
-    "ConsulAddress": "",
     "ConsulAclToken": "",
     "ConsulKVStoreProvider": "consul"
 }
