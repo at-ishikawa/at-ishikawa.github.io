@@ -48,6 +48,26 @@ In order install a language other than English, go to **Manage Installed Languag
 Then restart a computer
 
 
+### Use clipboard history
+Follow [this article](https://ubuntuhandbook.org/index.php/2021/10/access-copy-paste-history-ubuntu-gpaste/).
+
+```
+sudo apt install gnome-shell-extension-gpaste
+```
+Also, to manage extensions, install next tool if you haven't installed it yet.
+
+```
+sudo apt install gnome-shell-extension-prefs
+```
+
+Once you restart your GNOME shell, you can use them.
+
+There are shortcut keys for this tool to use this clipboard more efficiently.
+See the full list in [this article](https://www.linuxuprising.com/2018/08/gpaste-is-great-clipboard-manager-for.html)
+
+* Ctrl + Alt + H: Open the GPaste history on the top bar
+* Ctrl + Alt + S: Mask the current item as a password
+
 Themes
 ---
 
