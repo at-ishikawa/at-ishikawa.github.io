@@ -25,6 +25,54 @@ I ended up to set 1920x1080.
 ### Mouse & Touchpad
 Change the scroll direction on the middle button of a mouse by turning on **Mouse > Natural Scrolling**.
 
+
+### Support Multi gestures of Touchpad
+
+**Note that most of gestures still doesn't work.**
+
+Folllow [this article](https://www.omgubuntu.co.uk/2018/09/linux-touchpad-gestures-app) to set up this.
+Install [Gestures](https://gitlab.com/cunidev/gestures) and its dependencies.
+
+```
+> sudo apt install python3 python3-gi meson xdotool libinput-tools gettext
+```
+Then install [libinput-gestures](https://github.com/bulletmark/libinput-gestures).
+
+```
+sudo gpasswd -a $USER input
+ghq get github.com/bulletmark/libinput-gestures
+cd /path/to/libinput-gestures
+sudo make install
+libinput-gestures-setup autostart start
+```
+
+Next, install a flatpak to download Gestures.
+```
+sudo apt install flatpak gnome-software-plugin-flatpak
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+```
+Before next step, restart your computer for the flatpak setup.
+
+Then download Gestures from FLATHUB.
+
+
+#### Troubleshooting
+##### Error `No module named 'packaging`
+
+I got an error `No module named 'packaging` when I ran `libinput-gestures-setup autostart start` for some reasons.
+Following this [stackdriver question](https://stackoverflow.com/questions/42222096/no-module-named-packaging), I ran `sudo apt install python3-packaging` and restarted my desktop, and then it started successfully.
+
+##### Swipe left and right to go back and forward on a browser doesn't work
+
+I haven't been able to solve it yet.
+The configuration uses xdotool, but it looks it has an issue to get a window on the tool.
+I couldn't even get an active window on the CLI.
+```
+> xdotool getactivewindow
+XGetWindowProperty[_NET_ACTIVE_WINDOW] failed (code=1)
+xdo_get_active_window reported an error
+```
+
 ### Keyboard
 Before setting a keyboard, install [Gnome tweaks](https://wiki.gnome.org/action/show/Apps/Tweaks?action=show&redirect=Apps%2FGnomeTweakTool) by next command.
 ```
@@ -77,6 +125,7 @@ First of all, GNOME shell extension and "chrome-gnome-shell" need to be installe
 Then run `gnome-tweaks` and see there is **Extensions > User themes**.
 If not, restart a computer and check it again.
 Then install a browser extension for gnome extension and install [Night Theme Switcher](https://extensions.gnome.org/extension/2236/night-theme-switcher/).
+
 
 
 Install applications
