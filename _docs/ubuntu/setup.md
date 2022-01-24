@@ -211,6 +211,20 @@ In order to keep mounting even after shutdown, the command `google-drive-ocamlfu
 [This page](https://www.fosslinux.com/500/how-to-add-auto-startup-applications-in-ubuntu-16-04.htm) describes about Startup Applications on Ubuntu.
 
 
+
+Grub
+===
+
+- In order to set the default boot option as the last OS you chose, edit `/etc/default/grub` and set `GRUB_DEFAULT=saved` and `GRUB_SAVEDEFAULT=true`.
+    - See [this article](https://www.howtogeek.com/196655/how-to-configure-the-grub2-boot-loaders-settings/) for more details.
+- In order to fix grub boot errors, [boot-repair](https://help.ubuntu.com/community/Boot-Repair) may be helpful to install and use it, run
+
+    ```
+    sudo add-apt-repository ppa:yannubuntu/boot-repair && sudo apt update
+    sudo apt install -y boot-repair && boot-repair
+    ```
+
+
 Troubleshotings
 ===
 
