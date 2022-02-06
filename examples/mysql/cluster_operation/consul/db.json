@@ -1,0 +1,23 @@
+{
+  "Node": "db",
+  "Address": "main",
+  "NodeMeta": {
+    "external-node": "true",
+    "external-probe": "true"
+  },
+  "Service": {
+    "ID": "db",
+    "Service": "db",
+    "Port": 3306
+  },
+  "Checks": [
+    {
+      "Name": "tcp-check",
+      "status": "passing",
+      "Definition": {
+        "tcp": "main:3306",
+        "interval": "10s"
+      }
+    }
+  ]
+}
