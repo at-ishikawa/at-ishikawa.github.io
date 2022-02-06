@@ -14,3 +14,7 @@ Follow [this article](https://www.ansonlowzf.com/create-a-website-with-material-
     npm install @mui/material @mui/icons-material @emotion/react @emotion/styled
 
 Then use one of a material component.
+
+### Dark mode or light mode
+Follow [this official page](https://mui.com/customization/dark-mode/).
+
