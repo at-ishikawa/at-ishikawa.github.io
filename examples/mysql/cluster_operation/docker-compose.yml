@@ -75,8 +75,6 @@ services:
       - -wait
       - tcp://read-replica-2:3306
       - -wait
-      - tcp://orchestrator-mysql:3306
-      - -wait
       - tcp://consul-server1:8500
       - -wait
       - tcp://consul-server2:8500
@@ -87,17 +85,6 @@ services:
       - orchestrator-mysql
       - consul-server1
       - consul-server2
-
-  orchestrator:
-    image: orchestrator:latest
-    ports:
-      - 3000:3000
-    volumes:
-      - ./orchestrator/orchestrator.conf.json:/etc/orchestrator.conf.json
-    depends_on:
-      - dockerize
-    networks:
-      - db
 
   consul-server1:
     image: consul
