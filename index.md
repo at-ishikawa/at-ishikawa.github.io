@@ -51,6 +51,7 @@ MySQL
 - [Server configuration](./docs/mysql/server_config)
 - [Replication](./docs/mysql/replication)
 - [Performance](./docs/mysql/performance)
+- [Backup and restore](./docs/mysql/backup)
 - [Lock](./docs/mysql/lock)
 - [gh-ost](./docs/mysql/gh-ost)
 - [Orchestrator](./docs/mysql/orchestrator)

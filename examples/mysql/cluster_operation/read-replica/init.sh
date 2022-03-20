@@ -8,7 +8,7 @@ mysql_password=$MYSQL_ROOT_PASSWORD
 
 # Wait for main db
 while ! mysqladmin ping -h "$mysql_main_server" -u $mysql_user -p$mysql_password --silent; do
-    sleep 1
+    sleep 10
 done
 
 # Backup a main db
@@ -28,4 +28,4 @@ CHANGE MASTER TO
 START SLAVE;
 EOF
 
-mysql -h localhost -u$mysql_user -p$mysql_password < /tmp/init.sql
+mysql --ssl-mode=DISABLED -h localhost -u$mysql_user -p$mysql_password < /tmp/init.sql
