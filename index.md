@@ -57,6 +57,9 @@ MySQL
 - [Orchestrator](./docs/mysql/orchestrator)
 - [Tools](./docs/mysql/tools)
 
+Vitess
+----
+- [Getting Started](./docs/vitess/vitess)
 
 Consul
 ---
