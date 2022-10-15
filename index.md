@@ -57,6 +57,10 @@ MySQL
 - [Orchestrator](./docs/mysql/orchestrator)
 - [Tools](./docs/mysql/tools)
 
+ProxySQL
+---
+- [Getting Started](./docs/proxysql/getting_started)
+
 Vitess
 ----
 - [Getting Started](./docs/vitess/vitess)
