@@ -60,7 +60,7 @@ mysql_users =
 Proxy to a MySQL cluster
 ---
 
-See [/exampels/proxysql/cluster/proxysql.cnf] for the example of a configuration.
+See [proxysql.cnf](/exampels/proxysql/cluster/proxysql.cnf) for the example of a configuration.
 
 - [mysql_query_rules](https://proxysql.com/documentation/main-runtime/#mysql_query_rules): Rules to route queries to each backend MySQL.
   For example, in [this official page](articled), this is used to show how to split a read and write query though it's not completed.
