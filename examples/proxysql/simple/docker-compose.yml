@@ -1,0 +1,36 @@
+version: '3.8'
+
+networks:
+  db:
+    driver: bridge
+
+services:
+  # https://hub.docker.com/r/proxysql/proxysql
+  proxysql:
+    image: proxysql/proxysql
+    ports:
+      # MySQL for ProxySQL admin
+      - 16032:6032
+      # Backend MySQLs
+      - 16033:6033
+      # Prometheus: https://proxysql.com/documentation/prometheus-exporter/
+      - 16070:6070
+    volumes:
+      - ./proxysql.cnf:/etc/proxysql.cnf
+    networks:
+      - db
+
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: monitor
+      MYSQL_PASSWORD: monitor_password
+    networks:
+      - db
+
+volumes:
+  data:
+    driver: local
