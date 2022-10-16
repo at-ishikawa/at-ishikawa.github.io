@@ -9,7 +9,7 @@ The official document:
 Getting Started
 ===
 
-See [this docker-compose.yml](/examples/proxysql/docker-compose.yml) and [proxysql.cnf](/examples/proxysql/proxysql.cnf) for the example of proxysql.
+See [this docker-compose.yml](/examples/proxysql/simple/docker-compose.yml) and [proxysql.cnf](/examples/proxysql/simple/proxysql.cnf) for the example of proxysql.
 
 With this configuration, you can access a proxysql by
 ```
@@ -22,7 +22,7 @@ There are multiple ports
 - 6033: Backend MySQL ports, defined in `mysql_variables.interfaces`
 - 6070: Rest API port, including Prometheus endpoints. [Official document](https://proxysql.com/documentation/prometheus-exporter/)
 
-Configuration files
+Basics of a configuration file
 ---
 See an [official article](https://proxysql.com/documentation/getting-started/).
 
@@ -56,3 +56,18 @@ mysql_users =
   }
 )
 ```
+
+Proxy to a MySQL cluster
+---
+
+See [/exampels/proxysql/cluster/proxysql.cnf] for the example of a configuration.
+
+- [mysql_query_rules](https://proxysql.com/documentation/main-runtime/#mysql_query_rules): Rules to route queries to each backend MySQL.
+  For example, in [this official page](articled), this is used to show how to split a read and write query though it's not completed.
+
+Confirming which query goes to which host group, we can see [stats tables](https://proxysql.com/documentation/proxysql-configuration/).
+```
+SELECT * FROM stats_mysql_query_digest;
+```
+
+Also, see [an article](https://severalnines.com/blog/running-proxysql-kubernetes-service/) for configurations of ProxySQL.

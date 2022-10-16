@@ -1,0 +1,77 @@
+version: '3.8'
+
+x-template:
+  mysql: &mysql_template
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: test
+    tmpfs:
+      - /var/lib/mysql
+    networks:
+      - db
+
+networks:
+  db:
+    driver: bridge
+
+services:
+  # https://hub.docker.com/r/proxysql/proxysql
+  proxysql:
+    image: proxysql/proxysql
+    ports:
+      # MySQL for ProxySQL admin
+      - 16032:6032
+      # Backend MySQLs
+      - 16033:6033
+      # Prometheus: https://proxysql.com/documentation/prometheus-exporter/
+      - 16070:6070
+    volumes:
+      - ./proxysql.cnf:/etc/proxysql.cnf
+    depends_on:
+      - dockerize
+    networks:
+      - db
+
+  primary:
+    <<: *mysql_template
+    hostname: main
+    volumes:
+      - ./primary/my.cnf:/etc/my.cnf
+      - ./primary/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  read-replica-1:
+    <<: *mysql_template
+    hostname: read-replica-1
+    volumes:
+      - ./read-replica/my.cnf:/etc/my.cnf
+      - ./read-replica/init.sh:/docker-entrypoint-initdb.d/init.sh
+    command:
+      - --server-id=11
+    depends_on:
+      - primary
+
+  read-replica-2:
+    <<: *mysql_template
+    hostname: read-replica-2
+    volumes:
+      - ./read-replica/my.cnf:/etc/my.cnf
+      - ./read-replica/init.sh:/docker-entrypoint-initdb.d/init.sh
+    command:
+      - --server-id=12
+    depends_on:
+      - primary
+
+  dockerize:
+    image: jwilder/dockerize
+    command:
+      - -wait
+      - tcp://primary:3306
+      - -wait
+      - tcp://read-replica-1:3306
+      - -wait
+      - tcp://read-replica-2:3306
+    depends_on:
+      - primary
+      - read-replica-1
+      - read-replica-2
