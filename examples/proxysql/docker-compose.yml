@@ -13,6 +13,8 @@ services:
       - 16032:6032
       # Backend MySQLs
       - 16033:6033
+      # Prometheus: https://proxysql.com/documentation/prometheus-exporter/
+      - 16070:6070
     volumes:
       - ./proxysql.cnf:/etc/proxysql.cnf
     networks:

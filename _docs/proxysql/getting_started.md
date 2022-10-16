@@ -20,6 +20,7 @@ mysql -h 127.0.0.1 -u radmin -P 16032-pradmin --prompt "ProxySQL Admin> "
 There are multiple ports
 - 6032: MySQL port to access ProxySQL configurations
 - 6033: Backend MySQL ports, defined in `mysql_variables.interfaces`
+- 6070: Rest API port, including Prometheus endpoints. [Official document](https://proxysql.com/documentation/prometheus-exporter/)
 
 Configuration files
 ---
