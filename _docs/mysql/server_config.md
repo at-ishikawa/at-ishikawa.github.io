@@ -80,3 +80,23 @@ read_rnd_buffer_size=2M
 
 See following pages for more details
 - [Performance Tuning](https://qiita.com/mamy1326/items/9c5eaee3c986cff65a55) (in Japanese)
+
+
+[SQL mode](https://dev.mysql.com/doc/refman/5.7/en/sql-mode.html)
+===
+
+[Traditional SQL mode](https://dev.mysql.com/doc/refman/5.7/en/sql-mode.html#sqlmode_traditional)
+---
+
+It's equal to followings after 5.7.7
+- STRICT_TRANS_TABLES, STRICT_ALL_TABLES, NO_ZERO_IN_DATE, NO_ZERO_DATE, ERROR_FOR_DIVISION_BY_ZERO, NO_AUTO_CREATE_USER, and NO_ENGINE_SUBSTITUTION
+
+
+[Strict SQL mode](https://dev.mysql.com/doc/refman/5.7/en/sql-mode.html#sql-mode-strict)
+---
+
+
+Configuration
+---
+- STRICT_TRANS_TABLE: [Strict mode](https://dev.mysql.com/doc/refman/5.7/en/sql-mode.html#sql-mode-strict)
+    -

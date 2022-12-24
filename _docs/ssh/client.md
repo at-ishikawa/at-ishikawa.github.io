@@ -25,3 +25,24 @@ How to add password to the private key without a password
 Use: `ssh-keygen -p -f /path/to/key`. For example, `ssh-keygen -p -f ~/.ssh/id_rsa`
 
 See [stackoverflow](https://stackoverflow.com/questions/3818886/how-do-i-add-a-password-to-an-openssh-private-key-that-was-generated-without-a-p) for more details.
+
+
+Trouble shootings
+===
+
+When you run SSH, you get an error `Pseudo-terminal will not be allocated because stdin is not a terminal`.
+---
+
+I wanted to get one time token from 1 password and pass it to SSH for the server's 2FA.
+I tried to run next for this, but failed
+```
+> echo (op item get --otp "server" --vault "vault") | ssh server
+Pseudo-terminal will not be allocated because stdin is not a terminal.
+```
+
+So I ended up running like next
+```
+> op item get --otp "server" --vault "vault" && ssh server
+```
+
+See [this article](https://linuxtutorials.org/Pseudo-terminal-will-not-be-allocated-because-stdin-is-not-a-terminal/) for example.
