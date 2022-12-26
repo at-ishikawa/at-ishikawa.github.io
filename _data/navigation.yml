@@ -1,6 +1,6 @@
-# main:
-#   - title: "Top"
-#     url: /
+main:
+  - title: "Tags"
+    url: "/tags/"
 
 docs:
   - title: Go

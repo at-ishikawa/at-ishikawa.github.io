@@ -10,6 +10,7 @@ plugins:
   - jekyll-feed
   - jekyll-include-cache
   - jekyll-spaceship
+  - jekyll-archives
 minimal_mistakes_skin: air
 search: true
 search_full_content: true
@@ -20,6 +21,11 @@ after_footer_scripts:
   - /assets/js/cookie_banner.js
 include:
   - docs
+  - _pages
+exclude:
+  - README.md
+  - Makefile
+  - vendor
 
 author:
   name   : "at-ishikawa"
@@ -74,6 +80,31 @@ defaults:
       read_time: true
       comments: true
       share: true
+
+# Archives
+#  Type
+#  - GitHub Pages compatible archive pages built with Liquid ~> type: liquid (default)
+#  - Jekyll Archives plugin archive pages ~> type: jekyll-archives
+#  Path (examples)
+#  - Archive page should exist at path when using Liquid method or you can
+#    expect broken links (especially with breadcrumbs enabled)
+#  - <base_path>/tags/my-awesome-tag/index.html ~> path: /tags/
+#  - <base_path>/categories/my-awesome-category/index.html ~> path: /categories/
+#  - <base_path>/my-awesome-category/index.html ~> path: /
+# tag_archive:
+#   type: liquid
+#   path: /tags/
+# https://github.com/jekyll/jekyll-archives
+jekyll-archives:
+  enabled:
+#     - categories
+    - tags
+  layouts:
+#     category: archive-taxonomy
+    tag: archive-taxonomy
+  permalinks:
+#     category: /categories/:name/
+    tag: /tags/:name/
 
 analytics:
   provider: "google-universal"
