@@ -9,6 +9,7 @@ plugins:
 #   - jemoji
   - jekyll-feed
   - jekyll-include-cache
+  - jekyll-spaceship
 minimal_mistakes_skin: air
 search: true
 search_full_content: true
@@ -84,3 +85,9 @@ comments:
   utterances:
     theme: "github-light"
     issue_term: "pathname"
+
+
+### Plugins
+jekyll-spaceship:
+  processors:
+    - mermaid-processor
