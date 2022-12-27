@@ -39,7 +39,6 @@ Kubernetes
 - [CronJob](./docs/kubernetes/cronjob)
 - [kubectl](./docs/kubernetes/kubectl)
 - [helm](./docs/kubernetes/helm/client)
-- [Self managed k8s cluster by kubeadm](./docs/kubernetes/kubeadm.md)
 
 
 Nginx

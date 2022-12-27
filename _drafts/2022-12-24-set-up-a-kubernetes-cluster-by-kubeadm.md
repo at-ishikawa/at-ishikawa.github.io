@@ -40,7 +40,7 @@ graph TB
 Set up 3 GCE instances using the instance template, instance group without autoscaling:
 
 ```bash
-gcloud compute instance-templates create test-k8s-node-template --machine-type=e2-standard-4 --network-interface=network=default,network-tier=PREMIUM --maintenance-policy=MIGRATE --provisioning-model=STANDARD --scopes=https://www.googleapis.com/auth/cloud-platform --create-disk=auto-delete=yes,boot=yes,device-name=test-k8s-node-template,image=projects/debian-cloud/global/images/debian-11-bullseye-v20221206,mode=rw,size=10,type=pd-balanced --no-shielded-secure-boot --shielded-vtpm --shielded-integrity-monitoring --reservation-affinity=any
+gcloud compute instance-templates create test-k8s-node-template --machine-type=e2-standard-4 --network-interface=network=default,network-tier=PREMIUM --maintenance-policy=MIGRATE --provisioning-model=STANDARD --scopes=https://www.googleapis.com/auth/cloud-platform --create-disk=auto-delete=yes,boot=yes,device-name=test-k8s-node-template,image=projects/debian-cloud/global/images/debian-11-bullseye-v20221206,mode=rw,size=100,type=pd-balanced --no-shielded-secure-boot --shielded-vtpm --shielded-integrity-monitoring --reservation-affinity=any
 gcloud beta compute instance-groups managed create test-k8s-nodes --base-instance-name=test-k8s-nodes --size=3 --template=test-k8s-node-template --zone=us-central1-a --list-managed-instances-results=PAGELESS
 gcloud beta compute instance-groups managed set-autoscaling test-k8s-nodes --project=$PROJECT --zone=us-central1-a --cool-down-period=60 --max-num-replicas=3 --min-num-replicas=3 --mode=off --target-cpu-utilization=1.0
 ```
@@ -98,46 +98,19 @@ sudo sysctl net.bridge.bridge-nf-call-iptables net.bridge.bridge-nf-call-ip6tabl
 
 ### Install container runtime
 
-In [this document](https://kubernetes.io/docs/setup/production-environment/container-runtimes/#containerd), I installed `containerd` runtime.
+In [this document](https://kubernetes.io/docs/setup/production-environment/container-runtimes/#containerd), I chose to install the `containerd` runtime.
 
-Install containerd
-```
-curl -sLO https://github.com/containerd/containerd/releases/download/v1.6.14/containerd-1.6.14-linux-amd64.tar.gz
-sudo tar Cxzvf /usr/local containerd-1.6.14-linux-amd64.tar.gz
-```
-
-Setup the systemd for the containerd
-```
-curl -sLO https://raw.githubusercontent.com/containerd/containerd/main/containerd.service
-sudo mkdir -p /usr/local/lib/systemd/system/
-sudo mv containerd.service /usr/local/lib/systemd/system/
-sudo systemctl daemon-reload
-sudo systemctl enable --now containerd
-```
-
-Install runc
-```
-curl -sLO https://github.com/opencontainers/runc/releases/download/v1.1.4/runc.amd64
-install -m 755 runc.amd64 /usr/local/sbin/runc
-```
-
-Install cni plugins
-
-```
-curl -sLO https://github.com/containernetworking/plugins/releases/download/v1.1.1/cni-plugins-linux-amd64-v1.1.1.tgz
-sudo mkdir -p /opt/cni/bin
-sudo tar Cxzvf /opt/cni/bin cni-plugins-linux-amd64-v1.1.1.tgz
-```
-
-Confirm the version of loopback CNI plugin is greater than v1.0
+To set up a containerd, see [another post](/2022/12/26/getting-started-containerd/) for more details.
+After installing the containerd on the post, confirm the version of loopback CNI plugin should be greater than v1.0.
 ```
 /opt/cni/bin/loopback --version
 CNI loopback plugin v1.1.1
 ```
 
-Generate the default `container.toml` configuration
+Then generate the default `container.toml` configuration
 
 ```bash
+sudo mkdir /etc/containerd
 sudo bash -c "containerd config default > /etc/containerd/container.toml"
 ```
 
@@ -157,55 +130,6 @@ Restart a containerd
 sudo systemctl restart containerd
 ```
 
-### Install a CNI plugin of containerd
-
-Follow mainly on [this document](https://kubernetes.io/docs/tasks/administer-cluster/migrating-from-dockershim/troubleshooting-cni-plugin-related-errors/#an-example-containerd-configuration-file) to make this configuration.
-And also follow [this document](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/) for network plugins.
-
-```bash
-sudo su -
-cat << EOF | tee /etc/cni/net.d/10-containerd-net.conflist
-{
- "cniVersion": "1.0.0",
- "name": "containerd-net",
- "plugins": [
-   {
-     "type": "bridge",
-     "bridge": "cni0",
-     "isGateway": true,
-     "ipMasq": true,
-     "promiscMode": true,
-     "ipam": {
-       "type": "host-local",
-       "ranges": [
-         [{
-           "subnet": "10.128.0.0/20"
-         }]
-       ],
-       "routes": [
-         { "dst": "0.0.0.0/0" },
-         { "dst": "::/0" }
-       ]
-     }
-   },
-   {
-     "type": "portmap",
-     "capabilities": {"portMappings": true},
-     "externalSetMarkChain": "KUBE-MARK-MASQ"
-   }
- ]
-}
-EOF
-exit
-```
-
-Note that the loopback CNI
-plugin of containerd must also be greater than v1.0.0 by this configuration.
-
-```
-/opt/cni/bin/loopback --version
-CNI loopback plugin v1.1.1
-```
 
 ### Install kubelet, kubeadm, and kubectl
 
@@ -222,26 +146,10 @@ Note that install kubelet 1.25 instead of 1.26 because I got an error described 
 
 ### Set up a cluster by kubeadm
 
-To run kubeadm, set up a few things beforehand
-- Register DNS for the IPs of control plane nodes for high availability
-- Decide a Pod Cidr
-
-At first, create a DNS for control plane nodes on Cloud DNS.
+Now, it's time to create a kubernetes cluster by
 
 ```bash
-gcloud dns managed-zones create at-ishikawa-dev --dns-name="at-ishikawa.dev." --visibility="private" --networks="default" --description="The DNS for test-k8s-nodes"
-gcloud dns record-sets create k8s-control-plane.at-ishikawa.dev. --zone="at-ishikawa-dev" --type="A" --ttl="300" --rrdatas="10.128.15.225"
-```
-
-Check your subnet CIDR on GCP
-```bash
-> gcloud compute networks subnets list | grep us-central
-default  us-central1              default  10.128.0.0/20  IPV4_ONLY
-```
-
-```bash
-sudo kubeadm init --control-plane-endpoint k8s-control-plane.at-ishikawa.dev \
-  --pod-network-cidr 10.128.128.0/24
+sudo kubeadm init
 ```
 
 If it fails to init a k8s cluster, then fix an issue, revert a configuration by `kubeadm reset` and restart the init command again.
@@ -253,6 +161,45 @@ Then enable kubectl works for a non-root user by
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+
+#### Install a Networking addon
+
+Install one of networking addons from [this list](https://kubernetes.io/docs/concepts/cluster-administration/addons/#networking-and-network-policy).
+
+I chose cilium to install the networking addon.
+
+At first, install helm by [this document](https://helm.sh/docs/intro/install/)
+
+```bash
+curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+```
+
+Then install cilium by following [this document](https://docs.cilium.io/en/stable/gettingstarted/k8s-install-kubeadm/).
+
+```bash
+helm repo add cilium https://helm.cilium.io/
+helm install cilium cilium/cilium --version 1.12.5 --namespace kube-system
+```
+
+Validate the installation of the cilium CLI.
+
+First install the CLI by
+
+```bash
+CILIUM_CLI_VERSION=$(curl -s https://raw.githubusercontent.com/cilium/cilium-cli/master/stable.txt)
+CLI_ARCH=amd64
+if [ "$(uname -m)" = "aarch64" ]; then CLI_ARCH=arm64; fi
+curl -L --fail --remote-name-all https://github.com/cilium/cilium-cli/releases/download/${CILIUM_CLI_VERSION}/cilium-linux-${CLI_ARCH}.tar.gz{,.sha256sum}
+sha256sum --check cilium-linux-${CLI_ARCH}.tar.gz.sha256sum
+sudo tar xzvfC cilium-linux-${CLI_ARCH}.tar.gz /usr/local/bin
+rm cilium-linux-${CLI_ARCH}.tar.gz{,.sha256sum}
+```
+
+Then run these commands to validate if the cilium installation is correct
+```bash
+cilium status    --wait
+cilium connectivity test
 ```
 
 #### Cgroup drivers
@@ -276,6 +223,7 @@ $ kubectl get nodes
 NAME                  STATUS   ROLES           AGE     VERSION
 test-k8s-nodes-cxgs   Ready    control-plane   3m21s   v1.25.5
 ```
+
 
 ### Troubleshooting
 
@@ -304,3 +252,61 @@ CNI loopback plugin v0.8.6
 ```
 
 Instead of installing it by `apt`, install `containerd` and CNI plugins from binaries, following [these steps](https://github.com/containerd/containerd/blob/main/docs/getting-started.md).
+
+
+#### A cluster is unable to connect intermittently
+
+Kube API server pod starts running but afterward, it started stopping them for some reasons.
+
+I tried several things but I haven't still been able to fix this issue, like
+- Disable iptables
+- Set up a Networking plugin
+- Tried to configure Pod Cidr correctly
+- Tried to set up multiple control plane nodes
+
+
+### Another options to create a cluster
+
+From now on, it's completed.
+
+
+#### Set the pod CIDER
+
+```bash
+sudo kubeadm init --pod-network-cidr 10.193.0.0/16
+```
+
+#### Add another node on a control plane
+
+To create a high available kubernetes cluster, we have to
+- Register DNS for the IPs of control plane nodes for high availability
+    - To share certificates among nodes, use `--upload-certs` option, described in [this document]()
+
+At first, create a DNS for control plane nodes on Cloud DNS.
+
+```bash
+gcloud dns managed-zones create at-ishikawa-dev --dns-name="at-ishikawa.dev." --visibility="private" --networks="default" --description="The DNS for test-k8s-nodes"
+gcloud dns record-sets create k8s-control-plane.at-ishikawa.dev. --zone="at-ishikawa-dev" --type="A" --ttl="300" --rrdatas="10.128.0.12,10.128.0.14,10.128.0.16"
+```
+
+Then create a kubernetes cluster by
+
+```bash
+sudo kubeadm init --control-plane-endpoint k8s-control-plane.at-ishikawa.dev \
+    --upload-certs \
+    --pod-network-cidr 10.193.0.0/16
+```
+
+
+## Set up a data plane node
+
+It's similar to a control plane node.
+- Set up a container runtime including containerd and runc
+- Install a ciliumn CLI
+- Install a kubeadm CLI
+
+Afterward, set up a node specific configuration
+
+```bash
+sudo systemctl restart containerd
+```
