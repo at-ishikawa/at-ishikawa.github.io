@@ -76,6 +76,29 @@ Connecting to clusters...
 
 ```
 
+# Configure a monitoring on Google Cloud Monitoring
+
+As default, there are errors on permissions on an open telemetry collector installed by a config-system namespaces.
+
+```shell
+otel-collector-67d9f55576-xfkmd otel-collector 2023-02-26T06:13:31.097Z warn    batchprocessor/batch_processor.go:178Sender failed    {"kind": "processor", "name": "batch", "pipeline": "metrics/kubernetes", "error": "failed to export time series to GCM: rpc error: code = PermissionDenied desc = Permission monitoring.timeSeries.create denied (or the resource may not exist)."}
+```
+
+In this case, grant a permission the service account a write permission for Google Monitoring, by following by [this document](https://cloud.google.com/anthos-config-management/docs/how-to/monitoring-config-sync#custom-monitoring).
+
+- Create a service account on the GCP
+- Grant the service account workload identity user for the default SA in the config-management-monitoring namespace
+- Grant the `roles/monitoring.metricWriter` role to the GCP service account
+- Add an annotation `iam.gke.io/gcp-service-account: $GSA_NAME@$PROJECT_ID.iam.gserviceaccount.com` on the default SA on the config-management-monitoring namespace
+
+Then rollout the otel-collector deployment in the namespace.
+
+# Other configurations
+
+## CRD
+Put CRDs under `/cluster` directory.
+See [this document](https://cloud.google.com/anthos-config-management/docs/how-to/cluster-scoped-objects#configure_customresourcedefinitions) for more details.
+
 # Trouble shooting
 
 1. If `system/repo` is missing under the directory of a config sync, then we'll get next error. In that case, add a file `repo.yml` described in the above.
