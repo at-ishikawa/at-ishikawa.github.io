@@ -109,12 +109,83 @@ foo
 ```
 
 
+## Sync as Kubernetes Secret
+
+This is an alpha feature, but it's possible to sync and generate the data as a k8s secret, described in [this page](https://secrets-store-csi-driver.sigs.k8s.io/topics/sync-as-kubernetes-secret.html).
+**Note that the volume mount is required for the Sync With Kubernetes Secrets**
+
+To use this feature, at first, enable the feature on the helm chart.
+
+```yml
+syncSecret:
+  enabled: true
+```
+
+Then change k8s resources like next.
+I checked how to write the configuration for secret objects from the [test code of the provider](https://github.com/GoogleCloudPlatform/secrets-store-csi-driver-provider-gcp/blob/12450d1ac7098fa3fea1593d666950c0c2c1d008/test/e2e/templates/test-sync.yaml.tmpl#L24-L29).
+```diff
+@@ -11,6 +11,12 @@ spec:
+         path: "good1.txt"
+       - resourceName: "projects/$PROJECT_ID/secrets/secrets_store_csi_driver_test/versions/latest"
+         path: "good2.txt"
++  secretObjects:
++  - data:
++    - key: test-secret-contents
++      objectName: "good1.txt"
++    type: Opaque
++    secretName: test-synced-secret
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+@@ -31,6 +37,12 @@ spec:
+   - image: gcr.io/google.com/cloudsdktool/cloud-sdk:slim
+     imagePullPolicy: IfNotPresent
+     name: mypod
++    env:
++    - name: SECRET_CONTENTS
++      valueFrom:
++        secretKeyRef:
++            name: test-synced-secret
++            key: test-secret-contents
+     resources:
+       requests:
+         cpu: 100m
+```
+
+If you don't mount it on a volume mount, you'll get an error like this
+
+```yml
+status:
+  conditions:
+    containerStatuses:
+    - waiting:
+        message: secret "test-synced-secret" not found
+        reason: CreateContainerConfigError
+```
+
+When you succeed to deploy, you can see the secrets like
+
+```fish
+[personal|test-secrets-store-csi] > kubectl get secrets
+NAME                  TYPE                                  DATA   AGE
+default-token-qbwgz   kubernetes.io/service-account-token   3      10d
+test-synced-secret    Opaque                                1      1s
+[personal|test-secrets-store-csi] > kubectl view-secret test-synced-secret
+Choosing key: test-secret-contents
+foo
+[personal|test-secrets-store-csi] > kubectl exec -it mypod /bin/bash
+kubectl exec [POD] [COMMAND] is DEPRECATED and will be removed in a future version. Use kubectl exec [POD] -- [COMMAND] instead.
+root@mypod2:/# echo $SECRET_CONTENTS
+foo
+root@mypod2:/# exit
+exit
+```
+
+
 ## Additional features
 
 There are a a few features that are still alpha:
 
-* [Sync as Kubernetes Secret](https://secrets-store-csi-driver.sigs.k8s.io/topics/sync-as-kubernetes-secret.html)
-    * **The volume mount is required for the Sync With Kubernetes Secrets**
 * [Auto rotation](https://secrets-store-csi-driver.sigs.k8s.io/topics/secret-auto-rotation.html)
     * The secrets mounted on a pod will be automatically updated, but this doesn't support rotating secrets on an application side. Application has to implement a way to update secrets by detecting the updates
     * `SecretProviderClassPodStatus` resource stores the binding of a secret and a pod, and it also contains the version of the secret.
