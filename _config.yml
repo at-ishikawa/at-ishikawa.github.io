@@ -1,5 +1,5 @@
 remote_theme: "mmistakes/minimal-mistakes@4.19.1"
-repository: "at-ishikawa/at-ishikawa.github.io"
+repository: "at-ishikawa/at-ishikawa.gitthub.io"
 title: at-ishikawa's pages
 description: The notes about technical things when at-ishikawa looked into them for future use or faced troubles
 plugins:
@@ -49,34 +49,20 @@ defaults:
       path: "_posts"
       type: posts
     values:
-      layout: single
+      classes: wide
+      layout: posts
       read_time: true
       comments: true
       share: true
       related: true
-
-  - scope:
-      path: "_docs/animation"
-      type: docs
-    values:
-      layout: single
-      toc: true
-      toc_label: "Table of contents"
-      sidebar:
-        nav: "animation"
-      comments: true
-      share: true
 
   # _docs
   - scope:
       path: ""
       type: docs
     values:
+      classes: wide
       layout: single
-      toc: true
-      toc_label: "Table of contents"
-      sidebar:
-        nav: "docs"
       read_time: true
       comments: true
       share: true
