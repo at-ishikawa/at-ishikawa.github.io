@@ -1,6 +1,9 @@
 ---
 title: Notes when I updated a WSL version from 1 to 2
 date: 2021-03-17T00:00:00Z
+tags:
+  - windows
+  - wsl
 ---
 
 I mostly followed [this article](https://docs.microsoft.com/en-us/windows/wsl/install-win10#set-your-distribution-version-to-wsl-1-or-wsl-2) to update a WSL version, except that I didn't enable Hyper-V until then and got an error `Please enable the Virtual Machine Platform Windows feature and ensure virtualization is enabled in the BIOS.` while I was trying to update the vesrion.

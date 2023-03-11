@@ -1,8 +1,6 @@
 ---
 date: 2022-12-23
 title: SSH client
-tags:
-  - ssh
 ---
 
 SSH configuration
