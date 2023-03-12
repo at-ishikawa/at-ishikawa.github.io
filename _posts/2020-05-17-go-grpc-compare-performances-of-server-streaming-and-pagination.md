@@ -1,12 +1,9 @@
 ---
 title: Compare performances of gRPC server streaming and pagination of unary RPC
 date: 2020-05-17T19:00:00-07:00
-categories:
-  - golang
 tags:
   - golang
   - grpc
-  - server-streaming
 ---
 
 There are some cases that we wanna fetch all records that are matching with a certain condition from an other gRPC server.

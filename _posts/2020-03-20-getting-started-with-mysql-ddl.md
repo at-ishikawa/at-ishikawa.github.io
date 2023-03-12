@@ -1,12 +1,9 @@
 ---
 date: 2020-03-20
 title: Getting Started with MySQL DDL
-categories:
-  - mysql
 tags:
   - mysql
 ---
-Written in March, 2020.
 
 This document is described based on MySQL 5.6.
 

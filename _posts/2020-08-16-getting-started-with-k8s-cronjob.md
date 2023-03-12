@@ -1,9 +1,8 @@
 ---
 date: 2020-08-16
-title: k8s Cronjob
+title: Getting Started with Kubernetes Cronjob
 tags:
-  - k8s
-  - cronjob
+  - kubernetes
 ---
 
 Configurations

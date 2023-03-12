@@ -1,8 +1,9 @@
 ---
 date: 2020-03-19
-title: MySQL tools
+title: MySQL Tuner
 tags:
   - mysql
+  - mysql tuner
 ---
 
 [MySQL Tuner tool](https://github.com/major/MySQLTuner-perl)

@@ -1,8 +1,6 @@
 ---
 title: Enable comments on minimal mistake theme of GitHub pages
 date: 2020-04-26T17:00:00-07:00
-categories:
-  - github-pages
 tags:
   - git
   - jekyll

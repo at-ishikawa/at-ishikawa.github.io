@@ -1,8 +1,6 @@
 ---
 title: Enable lunr search for non-posts on minimal mistake theme of GitHub pages
 date: 2020-03-19T21:00:00-07:00
-categories:
-  - github-pages
 tags:
   - git
   - jekyll

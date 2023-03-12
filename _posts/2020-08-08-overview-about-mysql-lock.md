@@ -3,7 +3,6 @@ date: 2020-08-08
 title: Overview about MySQL Lock
 tags:
   - mysql
-  - lock
 ---
 
 This document is written for MySQL 5.7, so these contents may be not correct for other versions.

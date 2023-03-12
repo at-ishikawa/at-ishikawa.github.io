@@ -1,9 +1,8 @@
 ---
 date: 2020-08-16
-title: k8s Deployment
+title: Getting Started with Kubernetes Deployment
 tags:
-  - k8s
-  - deployment
+  - kubernetes
 ---
 
 The deployment is many use cases and in this page, they're not described.
