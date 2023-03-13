@@ -174,3 +174,125 @@ kubectl port-forward svc/prometheus-operated 9091:9090
 Then open the browser and see if prometheus query shows the correct data.
 
 If you can't, see [the troubleshooting page](https://prometheus-operator.dev/docs/operator/troubleshooting/) for more details.
+
+# Install Node Exporter
+
+To utilize some metrics of nodes, follow [this article](https://www.civo.com/learn/kubernetes-node-monitoring-with-prometheus-and-grafana).
+
+At first, deploy
+
+```yml
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  labels:
+    app: node-exporter
+  name: node-exporter
+  namespace: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: node-exporter
+  template:
+    metadata:
+      annotations:
+        cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
+      labels:
+        app: node-exporter
+    spec:
+      containers:
+      - args:
+        - --web.listen-address=0.0.0.0:9100
+        - --path.procfs=/host/proc
+        - --path.sysfs=/host/sys
+        image: quay.io/prometheus/node-exporter:v0.18.1
+        imagePullPolicy: IfNotPresent
+        name: node-exporter
+        ports:
+        - containerPort: 9100
+          hostPort: 9100
+          name: metrics
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 200m
+            memory: 50Mi
+          requests:
+            cpu: 100m
+            memory: 30Mi
+        volumeMounts:
+        - mountPath: /host/proc
+          name: proc
+          readOnly: true
+        - mountPath: /host/sys
+          name: sys
+          readOnly: true
+      hostNetwork: true
+      hostPID: true
+      restartPolicy: Always
+      tolerations:
+      - effect: NoSchedule
+        operator: Exists
+      - effect: NoExecute
+        operator: Exists
+      volumes:
+      - hostPath:
+          path: /proc
+          type: ""
+        name: proc
+      - hostPath:
+          path: /sys
+          type: ""
+        name: sys
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: node-exporter
+  name: node-exporter
+  namespace: prometheus
+spec:
+  ports:
+  - name: node-exporter
+    port: 9100
+    protocol: TCP
+    targetPort: 9100
+  selector:
+    app: node-exporter
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: node-exporter
+    serviceMonitorSelector: prometheus
+  name: node-exporter
+  namespace: prometheus
+spec:
+  endpoints:
+  - honorLabels: true
+    interval: 30s
+    path: /metrics
+    targetPort: 9100
+  jobLabel: node-exporter
+  namespaceSelector:
+    matchNames:
+    - prometheus
+  selector:
+    matchLabels:
+      app: node-exporter
+```
+
+Then change the Prometheus resources
+
+```diff
+-  serviceMonitorSelector:
+-    matchLabels:
+-      team: frontend
++  serviceMonitorSelector: {}
+```
+
