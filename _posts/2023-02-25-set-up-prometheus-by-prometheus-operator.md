@@ -296,3 +296,31 @@ Then change the Prometheus resources
 +  serviceMonitorSelector: {}
 ```
 
+# Install Kube State Metrics
+
+Install from helm charts following [the official document](https://github.com/kubernetes/kube-state-metrics#helm-chart).
+
+At first, install kube-state-metrics into a namespace, let's say `kube-state-metrics`.
+Then set up a ServiceMonitor
+```yml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: kube-state-metrics
+    serviceMonitorSelector: prometheus
+  name: kube-state-metrics
+  namespace: prometheus
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: kube-state-metrics
+  jobLabel: kube-state-metrics
+  namespaceSelector:
+    matchNames:
+    - kube-state-metrics
+  endpoints:
+  - port: http
+```
+
+Then I was able to see some metrics exported by kube-state-metrics.
