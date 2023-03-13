@@ -5,12 +5,16 @@ tags:
   - mysql
 ---
 
-Kubernetes
-===
+# Kubernetes
 - [Deployment](/2020/08/16/getting-started-with-k8s-deployment/)
 - [CronJob](/2020/08/16/getting-started-with-k8s-cronjob/)
 - [kubectl cheetsheet](/2020/03/19/kubectl-cheetsheet/)
 - [helm client](/2020/08/16/helm-client/)
+
+
+## Prometheus
+- [Getting Started with Prometheus Operator](/2023/02/26/set-up-prometheus-by-prometheus-operator/)
+- [Prometheus metrics overview](2023/03/12/prometheus-metrics-overview/)
 
 
 MySQL
