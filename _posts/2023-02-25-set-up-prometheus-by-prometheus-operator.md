@@ -1,6 +1,7 @@
 ---
 title: Set up a prometheus by a prometheus operator in a kubernetes cluster
-date: 2023-02-26T00:00:00
+date: 2023-02-26
+last_modified_at: 2023-03-12
 tags:
   - kubernetes
   - prometheus
@@ -13,7 +14,7 @@ This document is written by following [this document](https://prometheus-operato
 
 First, create CRDs and resources in the `default` namespace.
 
-```fish
+```bash
 set LATEST (curl -s https://api.github.com/repos/prometheus-operator/prometheus-operator/releases/latest | jq -cr .tag_name)
 curl -sLO https://github.com/prometheus-operator/prometheus-operator/releases/download/$LATEST/bundle.yaml
 kubectl apply -f bundle.yaml
@@ -156,3 +157,20 @@ spec:
   endpoints:
   - port: web
 ```
+
+Confirm if this configuration works.
+At first, confirm what kind of metrics are output by example-app.
+```bash
+kubectl port-forward service/example-app 18080:8080
+curl localhost:18080/metrics
+```
+
+Then access to the prometheus and see if the query runs
+
+```bash
+kubectl port-forward svc/prometheus-operated 9091:9090
+```
+
+Then open the browser and see if prometheus query shows the correct data.
+
+If you can't, see [the troubleshooting page](https://prometheus-operator.dev/docs/operator/troubleshooting/) for more details.
