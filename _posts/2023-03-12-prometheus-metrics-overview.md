@@ -47,7 +47,10 @@ These metrics require installing some of followings:
     ```
 
 - CPU requests per namespace: `sum by (exported_namespace)(kube_pod_container_resource_requests{resource="cpu", unit="core"})`
-- Memory utilization per container: `sum by (container)(container_memory_working_set_bytes{}[5m])`
+- Memory utilization per container:
+    - Max: `max by (namespace, container)(container_memory_working_set_bytes{})`
+    - Median: `quantile by (namespace, container)(0.5, container_memory_working_set_bytes{})`
+    - Min: `min by (namespace, container)(container_memory_working_set_bytes{})`
 - Memory requests per namespace: `sum by (exported_namespace)(kube_pod_container_resource_requests{resource="memory", unit="byte"})`
 
 ## Persistent volumes
