@@ -48,5 +48,6 @@ Deploy a k6 load test from [this document](https://github.com/grafana/tempo/tree
 Note that `endpoint` might need to be updated depends on the configuration.
 (This didn't work for some reasons).
 
+{% comment %}
 Instead, I developed a simple implementation to generate a trace by a golang.
-
+{% endcomment %}
