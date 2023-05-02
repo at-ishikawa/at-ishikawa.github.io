@@ -1,5 +1,5 @@
 ---
-title: Getting started cgroups for kubernetes CPU resource requests and limits
+title: Getting started cgroups for kubernetes resource requests and limits
 date: 2023-04-27
 tags:
   - kubernetes
@@ -24,17 +24,18 @@ https://medium.com/omio-engineering/cpu-limits-and-aggressive-throttling-in-kube
 https://engineering.squarespace.com/blog/2017/understanding-linux-container-scheduling
 {% endcomment %}
 
-In short,
+In short about CPU resources,
 
 * K8s CPU resources are for CPU time, and not CPU cores.
 * At a moment, a k8s pod might use all of CPU cores, beyond one set by CPU requests.
 * If CPU limit is set
     * Even if there is idle CPUs, they are not used if CPU usages hit the CPU limits
-* k8s CPU resources are mapped
+* k8s CPU resources are mapped on cgroups
     * requests: `cpu.shares`
     * limits: `cpu.cfs_quota_us` with `cpu.cfs_period_us`
 
 In this article, I'm going to check these cgroups configurations
+
 
 # Cgroups v1
 
@@ -98,7 +99,7 @@ Then load test CPUs on each cgroups for how it works.
 
 1. See CPU usages by `htop`. It's confirmed that 12 CPUs are used for 100%.
 
-    ![htop after only slow cgroup](/assets/images/posts/2023/04/27/getting_started_cgroups_for_kubernetes_cpu_resource_requests_and_limits/02_01_htop_after_slow_runs.png)
+    ![htop after only slow cgroup](/assets/images/posts/2023/04/27/getting_started_cgroups_for_kubernetes_resource_requests_and_limits/02_01_htop_after_slow_runs.png)
 
 1. Run a stress on the fast cgroup by
 
@@ -111,7 +112,7 @@ Then load test CPUs on each cgroups for how it works.
    The PID output by `stress` can be seen on the column PPID on htop to recognize which one is for fast cgroup and which one is for slow cgroup.
    And also, the fast cgroup uses about 75% (9 CPUs) while the slow cgroup uses 25% (3 CPUs), which is similar to the configuration of `cpu.shares` ratios.
 
-    ![htop after 2 cgroups](/assets/images/posts/2023/04/27/getting_started_cgroups_for_kubernetes_cpu_resource_requests_and_limits/02_02_htop_after_fast_runs.png)
+    ![htop after 2 cgroups](/assets/images/posts/2023/04/27/getting_started_cgroups_for_kubernetes_resource_requests_and_limits/02_02_htop_after_fast_runs.png)
 
 1. Confirm `cpu.cfs_quota_us` and `cpu.cfs_period_us` on the fast cgroup.
 
@@ -134,15 +135,22 @@ Then load test CPUs on each cgroups for how it works.
 
 1. See htop. CPU usages on the stress against the fast cgroup which PID=1305, was reduced and those for the slow cgroup was increased.
 
-    ![htop after setting cfs_quota_us](/assets/images/posts/2023/04/27/getting_started_cgroups_for_kubernetes_cpu_resource_requests_and_limits/02_03_htop_after_fast_set_cgroup_cfs_quota_us.png)
+    ![htop after setting cfs_quota_us](/assets/images/posts/2023/04/27/getting_started_cgroups_for_kubernetes_resource_requests_and_limits/02_03_htop_after_fast_set_cgroup_cfs_quota_us.png)
 
 1. Stop the stress against the slow cgroup, which is without cpu.cfs_quota_us.
 1. See htop. CPU usages on the stress against the fast cgroup cannot use 100% CPU usages. There are 12 CPUs and they are used about 30%, so 4 CPUs are roughly used in a second.
 
-    ![htop after stopping slow cgroup](/assets/images/posts/2023/04/27/getting_started_cgroups_for_kubernetes_cpu_resource_requests_and_limits/02_04_htop_after_stopped_slow_cgroup.png)
+    ![htop after stopping slow cgroup](/assets/images/posts/2023/04/27/getting_started_cgroups_for_kubernetes_resource_requests_and_limits/02_04_htop_after_stopped_slow_cgroup.png)
+
+
+## Cgroups for Memory
+
+* Memory requests: It seems this is not used on Cgroup v1. I couldn't find any document to use this.
+    * On Cgroup v2, it seems it sets `memory.min` and `memory.low`
+* Memory limit: sets `memory.limit_in_bytes`
 
 
 # Questions
 
 * How is it related to [QoS](https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/)?
-* How is memory requests and limits work?
+    * [QoS](https://kubernetes.io/docs/concepts/workloads/pods/pod-qos/) is used to decide priorities to evict pods in the case of [NodePressure](https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/)
