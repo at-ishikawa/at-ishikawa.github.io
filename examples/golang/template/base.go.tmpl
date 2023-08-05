@@ -1,0 +1,12 @@
+{{- /* Go Template file */ -}}
+
+header:
+  {{ block "header" . }}
+    {{ .Name }}
+    It's a header written as the default in base
+  {{ end }}
+{{ template "body" }}
+footer:
+  {{ block "footer" . }}
+    It's a footer written as the default in base
+  {{ end }}

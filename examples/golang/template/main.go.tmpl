@@ -1,0 +1,12 @@
+{{ $vars := Channels }}
+{{ $var1 := index $vars 0 }}
+
+{{ define "body" }}
+main:
+  {{ .Name }}
+  It's written in the main
+  var1: {{ $var1 }}
+{{ end }}
+{{ define "footer" }}
+  It's a footer written in main
+{{ end }}
