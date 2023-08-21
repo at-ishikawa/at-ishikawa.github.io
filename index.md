@@ -1,15 +1,25 @@
 ---
-layout: home
-author_profile: true
+layout: splash
+excerpt: Notes for learnings of development, maintenance, and operations for programming and infrastructure
+header:
+  overlay_image: /assets/images/home/overlay.jpg
+  overlay_filter: rgba(0, 128, 128, 0.5)
+  caption: "Image credit: [**xresch on pixabay**](https://pixabay.com/photos/circle-tech-technology-abstract-5090539/)"
+feature_row:
+  - image_path: /assets/images/home/feature_row_orders.jpg
+    image_caption: "Image credit: [**markusspiske on pixabay**](https://pixabay.com/photos/hacker-cyber-code-angrfiff-3655668/)"
+    alt: "No image"
+    title: "Recent posts"
+    url: "/year-archive/"
+    btn_label: "See recent posts"
+    btn_class: "btn--inverse"
+  - image_path: /assets/images/home/feature_row_post.jpg
+    image_caption: "Image credit: [**joffi on pixabay**](https://pixabay.com/photos/hacking-hacker-computer-internet-1685092/)"
+    alt: "No image"
+    title: "Posts by tags"
+    url: "/year-archive/"
+    btn_label: "See tags"
+    btn_class: "btn--inverse"
 ---
-These pages collect notes for challenges and issues that the I got about technical stuff.
 
-Developed tools and libraries
-----
-- [Git fzf](https://github.com/at-ishikawa/git-fzf)
-- [Go grpc validator](https://pkg.go.dev/github.com/at-ishikawa/go-grpc-validator/playground/v9?tab=doc)
-- [Protobuf for Google APIs for JavaScript](https://www.npmjs.com/package/@at-ishikawa/googleapis-protobuf)
-
-
-Documents
-- [About Infrastructure](./docs/infrastructure)
+{% include feature_row %}
