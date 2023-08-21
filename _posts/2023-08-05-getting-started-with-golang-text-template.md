@@ -13,6 +13,7 @@ tags:
 
 Use [Go playground](https://go.dev/play/p/gvXME1EA4Yc)
 
+{% raw %}
 ```golang
 	type TemplateVariables struct {
 		Name string
@@ -26,6 +27,7 @@ Use [Go playground](https://go.dev/play/p/gvXME1EA4Yc)
 	}
 	return nil
 ```
+{% endraw %}
 
 ## Define a custom function
 
@@ -34,6 +36,7 @@ In order to use the function in a template, just use that function
 
 - [Go Playground](https://go.dev/play/p/35aRF73MrE4)
 
+{% raw %}
 ```golang
 	type TemplateVariables struct {
 		Name string
@@ -53,6 +56,7 @@ In order to use the function in a template, just use that function
 	}
 	return nil
 ```
+{% endraw %}
 
 ## Read a file
 
