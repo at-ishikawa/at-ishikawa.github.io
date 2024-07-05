@@ -1,8 +1,12 @@
 ---
 title: Linux command cheetsheet
 date: 2024-03-30
+last_modified_at: 2024-07-05
 tags:
   - linux
+  - awk
+  - sed
+  - grep
 ---
 
 # Basic commands
@@ -32,6 +36,14 @@ tags:
     - `$LINE_NUM_FROM,$LINE_NUM_TO`: Select lines from `$LINE_NUM_FROM` to `$LINE_NUM_TO`
 
 ## awk
+
+- `-F` is field separator. The default value is a `0x20`, which matches a space, tab, and newlines [this article](https://stackoverflow.com/a/30406868).
+- There can be some generic syntaxes like
+    - Variable can be defined and used
+        - Internal variables: `{ var=$1; print var }`
+    - Conditional flow like `if (condition1) { statement1; }`
+        - `next` can skip a line
+
 ## xargs
 ## envsubst
 
@@ -107,4 +119,24 @@ ac
 aa
 ab
 a
+```
+
+## How to output the 1st and 3rd column from a CSV file
+
+Using `awk`
+
+```bash
+> echo -e 'aa,ab,ac\nba,bb,bc\nca,cb,cc' | awk -F ',' '{ print $1,":",$3 }'
+aa : ac
+ba : bc
+ca : cc
+```
+
+Using `cut`
+
+```bash
+> echo -e 'aa,ab,ac\nba,bb,bc\nca,cb,cc' | cut -d "," -f 1,3
+aa,ac
+ba,bc
+ca,cc
 ```
