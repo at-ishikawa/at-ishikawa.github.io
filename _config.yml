@@ -1,12 +1,12 @@
 remote_theme: "mmistakes/minimal-mistakes@4.19.1"
 repository: "at-ishikawa/at-ishikawa.gitthub.io"
-title: "Tech notebooks: Infinite iterations"
+title: "at-ishikawa's tech notebooks"
 description: The technical notes about software development and infrastructure operations
 plugins:
-#   - jekyll-paginate
-#   - jekyll-sitemap
-#   - jekyll-gist
-#   - jemoji
+  #   - jekyll-paginate
+  #   - jekyll-sitemap
+  #   - jekyll-gist
+  #   - jemoji
   - jekyll-feed
   - jekyll-include-cache
   - jekyll-spaceship
@@ -29,14 +29,11 @@ exclude:
   - examples
 
 author:
-  name   : "at-ishikawa"
+  name: "at-ishikawa"
   links:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/at-ishikawa"
-    - label: "Medium"
-      icon: "fas fa-fw fa-link"
-      url: "https://medium.com/@at_ishikawa"
 
 # posts url
 permalink: pretty
@@ -84,13 +81,13 @@ defaults:
 # https://github.com/jekyll/jekyll-archives
 jekyll-archives:
   enabled:
-#     - categories
+    #     - categories
     - tags
   layouts:
-#     category: archive-taxonomy
+    #     category: archive-taxonomy
     tag: archive-taxonomy
   permalinks:
-#     category: /categories/:name/
+    #     category: /categories/:name/
     tag: /tags/:name/
 
 analytics:
