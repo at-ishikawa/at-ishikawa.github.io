@@ -28,8 +28,7 @@ header:
 My GitHub repositories I use for the development and operation:
 
 - [Fish Completion Interceptor](https://github.com/at-ishikawa/fish-completion-interceptor/): Enable to show suggestions like kubectl for completion
-- [GitHub Project Prometheus Exporter](https://github.com/at-ishikawa/fish-completion-interceptor/): Export prometheus metrics for a GitHub project
-- [IntelliJ plugin: Emacs Keymap for Mac OS](https://github.com/at-ishikawa/intellij-plugin-emacs-macos-keymap): Emacs Keymap in IntelliJ
+- [GitHub Project Prometheus Exporter](https://github.com/at-ishikawa/github_project_prometheus_exporter): Export prometheus metrics for a GitHub project
 
 
 ## Search posts
