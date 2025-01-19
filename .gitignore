@@ -7,3 +7,4 @@ _site/
 *.blend1
 *.out
 .idea/
+venv
