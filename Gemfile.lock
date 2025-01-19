@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/UriShX/jekyll-highlight-param
+  revision: 0ea868132fa34d18a7408fcb7ff9cfd2e434b5c6
+  specs:
+    jekyll-highlight-param (0.0.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -288,6 +294,7 @@ DEPENDENCIES
   github-pages
   jekyll (~> 3.8)
   jekyll-archives
+  jekyll-highlight-param (~> 0.0.2)!
   jekyll-include-cache
   jekyll-spaceship
 

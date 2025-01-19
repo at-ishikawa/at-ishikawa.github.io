@@ -11,6 +11,8 @@ plugins:
   - jekyll-include-cache
   - jekyll-spaceship
   - jekyll-archives
+  # https://rubygems.org/gems/jekyll-highlight-param
+  - jekyll-highlight-param
 minimal_mistakes_skin: air
 search: true
 search_full_content: true
