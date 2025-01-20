@@ -1,0 +1,55 @@
+networks:
+  redis:
+    driver: bridge
+
+services:
+  redis-insight:
+    # https://redis.io/docs/latest/operate/redisinsight/install/install-on-docker/
+    image: redis/redisinsight:latest
+    ports:
+      - 5540:5540
+    networks:
+      - redis
+
+  redis-node-1: &redis-node
+    image: redis
+    networks:
+      - redis
+    command:
+      - redis-server
+      - /etc/redis.conf
+    volumes:
+      - ./redis.conf:/etc/redis.conf
+
+  redis-node-2: *redis-node
+  redis-node-3: *redis-node
+  redis-node-4: *redis-node
+  redis-node-5: *redis-node
+  redis-node-6: *redis-node
+
+  # redis cluster requires at least 3 primary nodes
+  # --cluster-replicas=1 means one replica for each primary node
+  init:
+    image: redis
+    command:
+      - redis-cli
+      - --cluster
+      - create
+      - redis-node-1:6379
+      - redis-node-2:6379
+      - redis-node-3:6379
+      - redis-node-4:6379
+      - redis-node-5:6379
+      - redis-node-6:6379
+      - --cluster-replicas
+      - "1"
+      - --cluster-yes
+    depends_on:
+      - redis-node-1
+      - redis-node-2
+      - redis-node-3
+      - redis-node-4
+      - redis-node-5
+      - redis-node-6
+    networks:
+      - redis
