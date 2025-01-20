@@ -10,6 +10,8 @@ services:
       - 5540:5540
     networks:
       - redis
+    volumes:
+      - redisinsight_data:/data
 
   redis-node-1: &redis-node
     image: redis
@@ -53,3 +55,7 @@ services:
       - redis-node-6
     networks:
       - redis
+
+volumes:
+  redisinsight_data:
+    driver: local
