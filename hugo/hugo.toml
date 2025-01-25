@@ -4,5 +4,14 @@ languageCode = "en-us"
 title = "at-ishikawa's tech notebooks"
 theme = "hugo-theme-relearn"
 
+# https://gohugo.io/about/privacy/#configuration
+[privacy]
+[privacy.googleAnalytics]
+disable = false
+
+[services]
+[services.googleAnalytics]
+id = 'G-RM66XT566C'
+
 [security]
 enableInlineShortcodes = true
