@@ -1,343 +1,372 @@
 ---
 date: "2024-04-28T00:00:00Z"
 last_modified_at: "2025-01-19"
-table_basics:
-  columns:
-  - php: PHP
-  - python: Python
-  - golang: Golang
-  - typescript: TypeScript
-  rows:
-  - description: null
-    is_plain_text: true
-    languages:
-      golang: nil
-      php: "null"
-      python: None
-      typescript: "null"
-  - description: Undefined key
-    is_plain_text: true
-    languages:
-      typescript: undefined
-  - description: Equal
-    languages:
-      golang: var1 == var2
-      php: $var1 == $var2
-      python: var1 == var2
-      typescript: var1 == var2
-  - description: Strict equal
-    languages:
-      php: $var1 === $var2
-      typescript: var1 === var2
-  - description: Null Coalescence
-    languages:
-      php: $var ?? 'default'
-      typescript: var ?? 'default'
-  - description: Null Assertion (Ignore null value)
-    languages:
-      typescript: var!
-table_columns:
-- php: PHP
-- python: Python
-- golang: Golang
-- typescript: TypeScript
-table_control_flows:
-  columns:
-  - php: PHP
-  - python: Python
-  - golang: Golang
-  - typescript: TypeScript
-  rows:
-  - description: if, else if, else
-    languages:
-      golang: |
-        if condition1 {
-          // logic 1
-        } else if condition 2 {
-          // logic 2
-        } else {
-          // logic 3
-        }
-      php: |
-        if ($condition1) {
-            // logic 1
-        } else if ($condition2) {
-            // logic 2
-        } else {
-            // logic 3
-        }
-      python: |
-        if $condition1:
-            # logic 1
-        elif $condition2:
-            # logic 2
-        else:
-            # logic 3
-  - description: for
-    languages:
-      golang: |
-        for i := 0; i < 10; i++ {
-          // do something
-        }
-      php: |
-        for ($i = 0; $i < 10; $i++) {
-          # do something
-        }
-      python: |
-        for i in range(10):
-          # do something
-  - description: foreach for an array without a index
-    languages:
-      golang: |
-        for _, value := range slice {
-          // do something
-        }
-      php: |
-        foreach ($array as $value) {
-          // do something
-        }
-      python: |
-        for value in list:
-          # do something
-  - description: foreach for an array with an index
-    languages:
-      golang: |
-        for index, value := range slice {
-          // do something
-        }
-        // Or
-        for index := range slice {
-          value := slice[index]
-          // do something
-        }
-      php: |
-        foreach ($array as $index => $value) {
-          // do something
-        }
-      python: |
-        for index, value in enumerate(list):
-          # do something
-  - description: foreach for a hash
-    languages:
-      golang: |
-        for key, value := range map {
-          // do something
-        }
-      php: |
-        foreach ($array as $key => $value) {
-          // do something
-        }
-      python: |
-        for key, value in dictionary.items():
-          # do something
-table_hash:
-  columns:
-  - php: PHP
-  - python: Python
-  - golang: Golang
-  - typescript: TypeScript
-  rows:
-  - description: Type
-    is_plain_text: true
-    languages:
-      golang: Map
-      php: array
-      python: Dictionary
-  - description: Initialize
-    languages:
-      golang: |
-        m := make(map[string]int)
-        # or
-        slice := make(map[string]int, capacity)
-      php: $hash = []
-      python: dictionary = {}
-  - description: Add
-    languages:
-      golang: m[key] = value
-      php: $hash[$key] = $value
-      python: dictionary[key] = value
-  - description: Check if a key exists
-    languages:
-      golang: value, exists := m[key]
-      php: array_key_exists($key, $hash)
-      python: key in dictionary
-table_heap:
-  columns:
-  - php: PHP
-  - python: Python
-  - golang: Golang
-  - typescript: TypeScript
-  rows:
-  - description: Type
-    is_plain_text: true
-    languages:
-      golang: '[container.heap.Interface](https://pkg.go.dev/container/heap)'
-      python: heap.Interface
-  - description: Initialize
-    languages:
-      python: heap.Init(h heap.Interface)
-  - description: Enqueue
-    languages:
-      python: heap.Push(h heap.Interface, value any)
-  - description: Dequeue
-    languages:
-      python: heap.Pop(h heap.Interface) any
-table_list:
-  columns:
-  - php: PHP
-  - python: Python
-  - golang: Golang
-  - typescript: TypeScript
-  rows:
-  - description: Type name
-    is_plain_text: true
-    languages:
-      golang: Slice
-      php: array
-      python: List
-  - description: Initialize
-    languages:
-      golang: slice := make([]int, length) or slice := make([]int, length, capacity)
-      php: $list = []
-      python: list = []
-  - description: Add an element
-    languages:
-      golang: slice = append(slice, element)
-      php: $list[] = $element
-      python: list.append(element)
-  - description: Sort (ascending)
-    languages:
-      golang: |
-        sort.Ints(s)
-        # or
-        sort.Slice(slice, func (i, j int) bool {
-          return slice[i] < slice[j]
-        })
-      php: sort($list)
-      python: |
-        list.sort()
-        # or
-        sortedList = sorted(list)
-  - description: Sort (descending)
-    languages:
-      golang: sort.Reverse(sort.Sort(slice))
-      php: rsort($list)
-      python: |
-        list.sort(reverse=True)
-        # or
-        sortedList = sorted(list, reverse=True)
-table_numbers:
-  columns:
-  - php: PHP
-  - python: Python
-  - golang: Golang
-  - typescript: TypeScript
-  rows:
-  - description: Decimal to binary
-    languages:
-      golang: strconv.FormatInt(decimal, 2)
-table_package_managers:
-  columns:
-  - php:
-      children:
-      - composer: Composer
-      description: PHP
-  - python:
-      children:
-      - pdm: '[PDM](https://pdm-project.org/en/latest/)'
-      - poetry: '[Poerty](https://python-poetry.org/)'
-      - hatch: '[Hatch](https://hatch.pypa.io/latest/)'
-      - conda: '[conda](https://docs.conda.io/projects/conda/en/stable/user-guide/install/index.html)'
-      - venv: '[venv module](https://docs.python.org/3/library/venv.html)'
-      description: Python
-  - golang:
-      children:
-      - go module: go module
-      description: Golang
-  - typescript:
-      children:
-      - npm: npm
-      - yarn: yarn
-      - pnpm: pnpm
-      description: TypeScript
-  rows:
-  - description: Support different language versions
-    values:
-      composer: "No"
-      conda: "Yes"
-      venv: "No"
-  - description: How to set up
-    highlight_lang: bash
-    values:
-      venv: |
-        python -m venv /path/to/venv
-        source /path/to/venv/bin/activate.$SHELL_NAME
-table_queue:
-  columns:
-  - php: PHP
-  - python: Python
-  - golang: Golang
-  - typescript: TypeScript
-  rows:
-  - description: Type
-    is_plain_text: true
-    languages:
-      golang: Slice
-      python: collections.deque
-  - description: Initialize
-    languages:
-      python: queue = deque([1, 2])
-  - description: Enqueue
-    languages:
-      python: queue.append(element)
-  - description: Dequeue
-    languages:
-      python: queue.pop()
-  - description: Length
-    languages:
-      python: len(queue)
-  - description: Empty
-    languages:
-      python: bool(queue)
-table_type:
-  columns:
-  - php: PHP
-  - python: Python
-  - golang: Golang
-  - typescript: TypeScript
-  rows:
-  - description: Type Alias
-    languages:
-      golang: type NewType OldType
-      typescript: |
-        type VariableType = OldType
-        type FunctionType = (var: number) => void
-  - description: Interface
-    languages:
-      golang: |
-        interface Interface {
-          method(var int) void
-        }
-      typescript: |
-        interface VariableInterface {
-          var: number;
-        }
-        interface FunctionInterface {
-          (var: number): void;
-        }
 tags:
 - programming
 title: Cheat sheet for programming languages
+
+# Page variables
+table_columns: &default_columns
+- code: php
+  text: PHP
+- code: python
+  text: Python
+- code: golang
+  text: Golang
+- code: typescript
+  text: TypeScript
+
+table_basics:
+  columns: *default_columns
+  rows:
+    - description: Null
+      is_plain_text: true
+      languages:
+        php: "null"
+        python: None
+        golang: nil
+        typescript: "null"
+    - description: Undefined key
+      is_plain_text: true
+      languages:
+        typescript: undefined
+    - description: Equal
+      languages:
+        php: $var1 == $var2
+        python: var1 == var2
+        golang: var1 == var2
+        typescript: var1 == var2
+    - description: Strict equal
+      languages:
+        php: $var1 === $var2
+        typescript: var1 === var2
+    - description: Null Coalescence
+      languages:
+        php: $var ?? 'default'
+        typescript: var ?? 'default'
+    - description: Null Assertion (Ignore null value)
+      languages:
+        typescript: var!
+
+table_type:
+  columns: *default_columns
+  rows:
+    - description: Type Alias
+      languages:
+        golang: type NewType OldType
+        typescript: |
+          type VariableType = OldType
+          type FunctionType = (var: number) => void
+    - description: Interface
+      languages:
+        golang: |
+          interface Interface {
+            method(var int) void
+          }
+        typescript: |
+          interface VariableInterface {
+            var: number;
+          }
+          interface FunctionInterface {
+            (var: number): void;
+          }
+
+table_control_flows:
+  columns: *default_columns
+  rows:
+    - description: if, else if, else
+      languages:
+        php: |
+          if ($condition1) {
+              // logic 1
+          } else if ($condition2) {
+              // logic 2
+          } else {
+              // logic 3
+          }
+        python: |
+          if $condition1:
+              # logic 1
+          elif $condition2:
+              # logic 2
+          else:
+              # logic 3
+        golang: |
+          if condition1 {
+            // logic 1
+          } else if condition 2 {
+            // logic 2
+          } else {
+            // logic 3
+          }
+    - description: for
+      languages:
+        php: |
+          for ($i = 0; $i < 10; $i++) {
+            # do something
+          }
+        python: |
+          for i in range(10):
+            # do something
+        golang: |
+          for i := 0; i < 10; i++ {
+            // do something
+          }
+    - description: foreach for an array without a index
+      languages:
+        php: |
+          foreach ($array as $value) {
+            // do something
+          }
+        python: |
+          for value in list:
+            # do something
+        golang: |
+          for _, value := range slice {
+            // do something
+          }
+    - description: foreach for an array with an index
+      languages:
+        php: |
+          foreach ($array as $index => $value) {
+            // do something
+          }
+        python: |
+          for index, value in enumerate(list):
+            # do something
+        golang: |
+          for index, value := range slice {
+            // do something
+          }
+          // Or
+          for index := range slice {
+            value := slice[index]
+            // do something
+          }
+    - description: foreach for a hash
+      languages:
+        php: |
+          foreach ($array as $key => $value) {
+            // do something
+          }
+        python: |
+          for key, value in dictionary.items():
+            # do something
+        golang: |
+          for key, value := range map {
+            // do something
+          }
+
+table_numbers:
+  columns: *default_columns
+  rows:
+    - description: Decimal to binary
+      languages:
+        golang: strconv.FormatInt(decimal, 2)
+
+table_list:
+  columns: *default_columns
+  rows:
+    - description: Type name
+      is_plain_text: true
+      languages:
+        php: array
+        python: List
+        golang: Slice
+    - description: Initialize
+      languages:
+        php: "$list = []"
+        python: "list = []"
+        golang: "slice := make([]int, length) or slice := make([]int, length, capacity)"
+    - description: Add an element
+      languages:
+        php: "$list[] = $element"
+        python: "list.append(element)"
+        golang: "slice = append(slice, element)"
+    - description: Sort (ascending)
+      languages:
+        php: "sort($list)"
+        python: |
+          list.sort()
+          # or
+          sortedList = sorted(list)
+        golang: |
+          sort.Ints(s)
+          # or
+          sort.Slice(slice, func (i, j int) bool {
+            return slice[i] < slice[j]
+          })
+    - description: Sort (descending)
+      languages:
+        php: "rsort($list)"
+        python: |
+          list.sort(reverse=True)
+          # or
+          sortedList = sorted(list, reverse=True)
+        golang: "sort.Reverse(sort.Sort(slice))"
+
+table_hash:
+  columns: *default_columns
+  rows:
+    - description: Type
+      is_plain_text: true
+      languages:
+        php: array
+        python: Dictionary
+        golang: Map
+    - description: Initialize
+      languages:
+        php: "$hash = []"
+        python: "dictionary = {}"
+        golang: |
+          m := make(map[string]int)
+          # or
+          slice := make(map[string]int, capacity)
+    - description: Add
+      languages:
+        php: "$hash[$key] = $value"
+        python: "dictionary[key] = value"
+        golang: "m[key] = value"
+    - description: Check if a key exists
+      languages:
+        php: "array_key_exists($key, $hash)"
+        python: "key in dictionary"
+        golang: "value, exists := m[key]"
+
+table_queue:
+  columns: *default_columns
+  rows:
+    - description: Type
+      is_plain_text: true
+      languages:
+        python: "collections.deque"
+        golang: Slice
+    - description: Initialize
+      languages:
+        python: "queue = deque([1, 2])"
+    - description: Enqueue
+      languages:
+        python: "queue.append(element)"
+    - description: Dequeue
+      languages:
+        python: "queue.pop()"
+    - description: Length
+      languages:
+        python: "len(queue)"
+    - description: Empty
+      languages:
+        python: "bool(queue)"
+
+table_heap:
+  columns: *default_columns
+  rows:
+    - description: Type
+      is_plain_text: true
+      languages:
+        python: "heap.Interface"
+        golang: "[container.heap.Interface](https://pkg.go.dev/container/heap)"
+    - description: Initialize
+      languages:
+        python: "heap.Init(h heap.Interface)"
+    - description: Enqueue
+      languages:
+        python: "heap.Push(h heap.Interface, value any)"
+    - description: Dequeue
+      languages:
+        python: "heap.Pop(h heap.Interface) any"
+
+table_package_managers:
+  columns:
+    - code: php
+      description: PHP
+      children:
+        - code: composer
+          description: Composer
+    - code: python
+      description: Python
+      children:
+        - code: pdm
+          description: "[PDM](https://pdm-project.org/en/latest/)"
+        - code: poetry
+          description: "[Poerty](https://python-poetry.org/)"
+        - code: hatch
+          description: "[Hatch](https://hatch.pypa.io/latest/)"
+        - code: conda
+          description: "[conda](https://docs.conda.io/projects/conda/en/stable/user-guide/install/index.html)"
+        - code: venv
+          description: "[venv module](https://docs.python.org/3/library/venv.html)"
+    - code: golang
+      description: Golang
+      children:
+        - code: "go module"
+          description: go module
+    - code: typescript
+      description: TypeScript
+      children:
+        - code: npm
+          description: npm
+        - code: yarn
+          description: yarn
+        - code: pnpm
+          description: pnpm
+  rows:
+    - description: Support different language versions
+      values:
+        composer: "No"
+        venv: "No"
+        conda: "Yes"
+    - description: How to set up
+      highlight_lang: bash
+      values:
+        venv: |
+          python -m venv /path/to/venv
+          source /path/to/venv/bin/activate.$SHELL_NAME
 ---
 
+
 ## Basics
-{% include render_codes_table.html columns=page.table_basics.columns rows=page.table_basics.rows %}
+{{< render_codes_table.inline columns="table_columns" table="table_basics" >}}
+{{ $columns := index $.Page.Params (.Get "columns") }}
+{{ $table := index $.Page.Params (.Get "table" )}}
+{{ $rows := index $table "rows" }}
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      {{- range $columns -}}
+        <th>{{ .text }}</th>
+      {{- end -}}
+    </tr>
+  </thead>
+  <tbody>
+    {{- range $row := $rows -}}
+    <tr>
+      <td>{{ $row.description }}</td>
+      {{ range $column := $columns }}
+        <td>
+          {{- $cell := index $row.languages $column.code -}}
+          {{- if $cell -}}
+            {{- if $row.is_plain_text -}}
+              {{- $cell | page.RenderString -}}
+            {{- else -}}
+              {{- highlight $cell $column.code -}}
+            {{- end -}}
+          {{- end -}}
+        </td>
+      {{ end }}
+    </tr>
+    {{ end }}
+  </tbody>
+</table>
+{{< /render_codes_table.inline >}}
+
 
 - Strict equal in TypeScript
     - 2 variables have the same types
 
 ### Syntax for types
-{% include render_codes_table.html columns=page.table_type.columns rows=page.table_type.rows %}
+{{< render_codes_table.inline columns="table_columns" table="table_type" />}}
 
 The difference of type and interface between TypeScript:
 - The type can be used for a type alias, but not for interface
@@ -352,24 +381,23 @@ These were discussed in the following articles:
 
 
 ### Syntax for control flow
-{% include render_codes_table.html columns=page.table_control_flows.columns rows=page.table_control_flows.rows %}
+{{< render_codes_table.inline columns="table_columns" table="table_control_flows" />}}
 
 ## Operations for common types
 ### Numbers
-{% include render_codes_table.html columns=page.table_numbers.columns rows=page.table_numbers.rows %}
+{{< render_codes_table.inline columns="table_columns" table="table_numbers" />}}
 
 ### List
-{% include render_codes_table.html columns=page.table_list.columns rows=page.table_list.rows %}
+{{< render_codes_table.inline columns="table_columns" table="table_list" />}}
 
 ### Hash
-{% include render_codes_table.html columns=page.table_hash.columns rows=page.table_hash.rows %}
+{{< render_codes_table.inline columns="table_columns" table="table_hash" />}}
 
 ### Queue
-{% include render_codes_table.html columns=page.table_queue.columns rows=page.table_queue.rows %}
+{{< render_codes_table.inline columns="table_columns" table="table_queue" />}}
 
 ### Heap
-
-{% include render_codes_table.html columns=page.table_heap.columns rows=page.table_heap.rows %}
+{{< render_codes_table.inline columns="table_columns" table="table_heap" />}}
 
 #### Golang implementation for Heap
 
@@ -414,52 +442,51 @@ func (pq *PriorityQueue) Pop() any {
 # Tools
 ## Package managers / Virtual environments
 
+{{< render_package_managers.inline >}}
+{{ $table := index $.Page.Params "table_package_managers"}}
+{{ $rows := index $table "rows" }}
+
 <table>
   <thead>
     <tr>
       <th></th>
-      {% for hash in page.table_package_managers.columns %}
-        {% assign column = hash | first | last %}
-        <th colspan={{ column.children | size }}>{{ column.description }}</th>
-      {% endfor %}
+      {{- range $column := $table.columns -}}
+        <th colspan={{ len $column.children }}>{{ $column.description}}</th>
+      {{- end -}}
     </tr>
     <tr>
       <th></th>
-      {% for hash in page.table_package_managers.columns %}
-        {% assign column = hash | first | last %}
-        {% for child_hash in column.children %}
-          {% assign desc = child_hash | first | last %}
-          <th>{{ desc | markdownify }}</th>
-        {% endfor %}
-      {% endfor %}
+      {{- range $column := $table.columns -}}
+        {{- range $child := $column.children -}}
+          <th>{{ $child.description | page.RenderString }}</th>
+        {{- end -}}
+      {{- end -}}
     </tr>
   </thead>
 
   <tbody>
-    {% for row in page.table_package_managers.rows %}
+    {{- range $row := $table.rows -}}
     <tr>
-      <td>{{ row.description }}</td>
-      {% for hash in page.table_package_managers.columns -%}
-        {%- assign column = hash | first | last -%}
-        {%- for child_hash in column.children -%}
-          {%- assign package_manager = child_hash | first | first -%}
+      <td>{{ $row.description }}</td>
+      {{- range $column := $table.columns -}}
+        {{- range $child := $column.children -}}
           <td>
-            {%- assign value = row.values[package_manager] -%}
-            {%- if value -%}
-              {%- if row.highlight_lang -%}
-                {%- highlight_param bash -%}
-                  {{- value -}}
-                {%- endhighlight_param -%}
-              {%- else -%}
-                {{- value | markdownify -}}
-              {%- endif -%}
-            {%- endif -%}
+            {{- $value := index $row.values $child.code -}}
+            {{- if $value -}}
+              {{- if (index $row "highlight_lang") -}}
+                {{- highlight $value (index $row "highlight_lang") -}}
+              {{- else -}}
+                {{- $value | page.RenderString -}}
+              {{- end -}}
+            {{- end -}}
           </td>
-        {%- endfor -%}
-      {%- endfor %}
+        {{- end -}}
+      {{- end -}}
     </tr>
-    {% endfor %}
+    {{- end -}}
   </tbody>
+
 </table>
+{{< /render_package_managers.inline >}}
 
 For Python, see some articles like [this dev.to article](https://dev.to/adamghill/python-package-manager-comparison-1g98) for better comparisons.

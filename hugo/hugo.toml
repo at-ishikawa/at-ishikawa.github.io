@@ -3,3 +3,6 @@ disablePathToLower = true
 languageCode = "en-us"
 title = "at-ishikawa's tech notebooks"
 theme = "hugo-theme-relearn"
+
+[security]
+enableInlineShortcodes = true
