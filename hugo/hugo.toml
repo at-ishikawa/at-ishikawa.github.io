@@ -1,8 +1,22 @@
-baseURL = "http://example.org/"
+baseURL = "https://at-ishikawa.github.io/"
 disablePathToLower = true
 languageCode = "en-us"
 title = "at-ishikawa's tech notebooks"
-theme = "hugo-theme-relearn"
+
+enableGitInfo = true
+
+# Migrate from Jekyll:
+# https://github.com/gohugoio/hugo/pull/4494
+# https://gohugo.io/getting-started/configuration/#configure-front-matter
+[frontmatter]
+date = [":filename", ":default"]
+
+[permalinks]
+[permalinks.page]
+posts = '/:year/:month/:day/:slug/'
+[permalinks.section]
+posts = '/posts/'
+
 
 # https://gohugo.io/about/privacy/#configuration
 [privacy]
@@ -15,3 +29,43 @@ id = 'G-RM66XT566C'
 
 [security]
 enableInlineShortcodes = true
+
+# theme depended params
+# https://imfing.github.io/hextra/docs/guide/configuration/
+[module]
+[[module.imports]]
+# path = "github.com/google/docsy"
+path = "github.com/imfing/hextra"
+
+
+[markup]
+[markup.goldmark]
+# allow raw html
+renderer.unsafe = true
+# enable hextra syntax highlight
+[markup.highlight]
+noClasses = false
+
+
+[menu]
+[[menu.main]]
+name = "Articles"
+pageRef = "/posts"
+weight = 1
+
+[[menu.main]]
+name = "Search"
+weight = 4
+params.type = "search"
+
+[[menu.main]]
+name = "GitHub"
+weight = 5
+url = "https://github.com/at-ishikawa/at-ishikawa.github.io"
+params.icon = "github"
+
+
+[params]
+# Display the last modification date
+displayUpdatedDate = true
+dateFormat = "January 2, 2006"
