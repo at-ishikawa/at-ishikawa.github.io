@@ -31,8 +31,20 @@ My GitHub repositories I use for the development and operation:
 - [GitHub Project Prometheus Exporter](https://github.com/at-ishikawa/github_project_prometheus_exporter): Export prometheus metrics for a GitHub project
 
 
-## Search posts
+## Search articles
 
-There are many posts, and here is posts to search
-- [Search posts by time](/year-archive/)
-- [Search posts by tags](/tags/)
+I've written many articles and here are the links to search them;
+- [Search articles by time](/year-archive/)
+- [Search articles by tags](/tags/)
+
+## Recent articles
+
+{{< recent_posts.inline >}}
+<ul>
+  {{- range $i, $v := where .Site.RegularPages "Section" "posts" -}}{{ if lt $i 10 -}}
+    <li>
+      <a href="{{ .RelPermalink }}">{{.Date.Format "2006/01/02"}} -- {{ .LinkTitle }}</a>
+    </li>
+  {{- end -}}{{- end -}}
+</ul>
+{{< / recent_posts.inline >}}
