@@ -1,9 +1,9 @@
 ---
 date: "2023-05-03T00:00:00Z"
+title: GCP Billing Analyze
 tags:
 - gcp
 - billing
-title: null
 ---
 
 There are a few documents to manage billing data in BigQuery
