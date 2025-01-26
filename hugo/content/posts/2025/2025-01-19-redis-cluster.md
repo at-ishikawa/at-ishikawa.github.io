@@ -47,7 +47,7 @@ A redis cluster consists of at least 3 primary hosts, so it's a multi-write clus
 Multiple replicas can be added on each primary node.
 Next diagram is a rough diagram to show a communication of a client and a redis cluster.
 
-```mermaid!
+```mermaid
 flowchart LR
   subgraph Redis Cluster
     Primary1[**Primary** 1]

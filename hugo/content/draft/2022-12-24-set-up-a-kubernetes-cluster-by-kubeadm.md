@@ -13,7 +13,7 @@ Follow [an official article](https://kubernetes.io/docs/setup/production-environ
 
 In this document, the next kubernetes cluster will be set up:
 
-```mermaid!
+```mermaid
 graph TB
     subgraph cluster [cluster in GCP]
         subgraph controlPlane [Control plane nodes]
