@@ -1,6 +1,6 @@
-# The Github pages.
+# The Github pages
 
-It's built by [Hugo](https://gohugo.io/).
+A blog built by [Hugo](https://gohugo.io/).
 
 ## Theme
-[hugo-theme-relearn](https://mcshelby.github.io/hugo-theme-relearn/) is used
+[imfing/hextra](https://github.com/imfing/hextra)) is used

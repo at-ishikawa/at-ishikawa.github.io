@@ -348,7 +348,7 @@ table_package_managers:
           {{- $cell := index $row.languages $column.code -}}
           {{- if $cell -}}
             {{- if $row.is_plain_text -}}
-              {{- $cell | page.RenderString -}}
+              {{- $cell | $.Page.RenderString -}}
             {{- else -}}
               {{- highlight $cell $column.code -}}
             {{- end -}}
@@ -458,7 +458,7 @@ func (pq *PriorityQueue) Pop() any {
       <th></th>
       {{- range $column := $table.columns -}}
         {{- range $child := $column.children -}}
-          <th>{{ $child.description | page.RenderString }}</th>
+          <th>{{ $child.description | $.Page.RenderString }}</th>
         {{- end -}}
       {{- end -}}
     </tr>
@@ -476,7 +476,7 @@ func (pq *PriorityQueue) Pop() any {
               {{- if (index $row "highlight_lang") -}}
                 {{- highlight $value (index $row "highlight_lang") -}}
               {{- else -}}
-                {{- $value | page.RenderString -}}
+                {{- $value | $.Page.RenderString -}}
               {{- end -}}
             {{- end -}}
           </td>
