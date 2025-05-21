@@ -1,6 +1,6 @@
 ---
 date: "2024-03-30T00:00:00Z"
-last_modified_at: "2024-07-05"
+last_modified_at: "2025-05-20"
 tags:
 - linux
 - awk
@@ -9,7 +9,31 @@ tags:
 title: Linux command cheetsheet
 ---
 
+# String handling
+
+For more details, see a [shell parameter expansion](https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html) page.
+
+- `$[var##pattern}`: Remove the beginning of a string matching a pattern
+
+    > var="abc%cdg.txt"
+    > echo ${var##*.}
+    txt
+    > echo ${var##*%}
+    cdg.txt
+
+- `${var%%pattern}`: Remove the trailing portion of a string matching a pattern
+
+    > var="abc%cdg.txt"
+    > echo ${var%%.*}
+    abc%cdg
+    > echo ${var%%\%*}
+    abc
+
 # Basic commands
+## file names
+
+- `basename`: Extract the basename of a file from a file path
+- `dirname`: Extract the parent directory name from a file path
 
 ## grep
 
@@ -31,6 +55,16 @@ title: Linux command cheetsheet
 - Commands
     - `s/$BEFORE/$AFTER/`, `s/$BEFORE/$AFTER/g`: replace a pattern $BEFORE with $AFTER. The separate `/` can be replaced with anything as long as the same separator is used, like `s%/% / %`. Adding `g` replaces all patterns matching instead of only the first pattern.
     - `p`: Print selected address ranges. Use like `${LINE}p`, or `/pattern1/,/pattern2/p`
+    - `i`: Insert lines BEFORE an address. Use like
+
+        sed '/pattern/i \
+        text before pattern'
+
+    - `a`: Append lines AFTER an address. Use like
+
+        sed '/pattern/a \
+        text after pattern'
+
 - Address ranges
     - `$LINE_NUM`
     - `$LINE_NUM_FROM,$LINE_NUM_TO`: Select lines from `$LINE_NUM_FROM` to `$LINE_NUM_TO`
@@ -93,7 +127,7 @@ ac
 ba
 ```
 
-## How to add a character on each line
+## How to add a character at the end of each line
 
 ```bash
 > echo -e "aa\nab\nac"
@@ -139,4 +173,46 @@ Using `cut`
 aa,ac
 ba,bc
 ca,cc
+```
+
+## How to add multiple lines before or after specific patterns
+
+Use `sed` with an `i` or `a` expression.
+
+```bash
+> echo -e 'line 1\nline 2\nline 3' | sed '/line 2/i \
+new line'
+line 1
+new line
+line 2
+line 3
+> echo -e 'line 1\nline 2\nline 3' | sed '/line 2/a \
+new line'
+line 1
+line 2
+new line
+line 3
+```
+
+## How to extract file names from a file path
+
+```bash
+> filepath=/var/log/mail.log.2.gz
+
+> echo $(dirname $filepath)
+/var/log
+> echo $(basename $filepath)
+mail.log.2.gz
+
+## Extract extension
+> echo ${filepath##*.}
+gz
+> echo ${filepath#*.}
+log.2.gz
+
+# Extract a filename without extensions
+> echo $(basename ${filepath%%.*})
+mail
+> echo $(basename ${filepath%.*})
+mail.log.2
 ```
