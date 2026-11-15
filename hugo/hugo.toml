@@ -1,6 +1,6 @@
 baseURL = "https://at-ishikawa.github.io/"
 disablePathToLower = true
-languageCode = "en-us"
+locale = "en-us"
 title = "at-ishikawa's tech notebooks"
 
 enableGitInfo = true

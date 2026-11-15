@@ -1,5 +1,5 @@
 ---
-title: Learning Grafana Mimir architecture
+title: Learning Grafana Thanos architecture
 date: 2025-03-30
 ---
 
